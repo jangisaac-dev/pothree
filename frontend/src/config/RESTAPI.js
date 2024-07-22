@@ -1,3 +1,5 @@
-const REST_API_KEY = "f2c887bdc41a8bbdb1be23333f628713";
+export const REST_API_KEY = "f2c887bdc41a8bbdb1be23333f628713";
 
-const REDIRECT_URI = "??";
+export const REDIRECT_URI = "http://10.30.111.163:80";
+
+// 210.206.150.12
