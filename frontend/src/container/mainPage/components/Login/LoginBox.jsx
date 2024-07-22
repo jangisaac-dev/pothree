@@ -33,7 +33,9 @@ const LoginBox = () => {
       {checked ? (
         <AdminLogin />
       ) : (
-        <img src={kakaoLogin} alt="" width={300} height={80} />
+        <ImageDiv>
+          <img src={kakaoLogin} alt="" width={300} height={80} />
+        </ImageDiv>
       )}
     </Wrapper>
   );
@@ -104,9 +106,6 @@ const ToggleButton = styled.span`
 const ToggleInput = styled.input`
   display: none;
 `;
-const ToggleText = styled.div`
-  display: ${(props) => (props.checked ? "none" : "")};
-`;
-const ToggleText2 = styled.div`
-  display: ${(props) => (props.checked ? "" : "none")};
+const ImageDiv = styled.div`
+  margin-top: 40px;
 `;
