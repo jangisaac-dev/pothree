@@ -58,6 +58,10 @@ dependencies {
 
     //db
     implementation 'org.mariadb.jdbc:mariadb-java-client:3.3.1'
+
+    // https://mvnrepository.com/artifact/com.squareup.okhttp/okhttp
+    implementation 'com.squareup.okhttp:okhttp:2.7.5'
+
 }
 
 tasks.named('test') {

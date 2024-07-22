@@ -22,5 +22,9 @@ public class AddressService {
     public List<AddressEntity> getAddrByUpperCode(String upperCode) {
         return addressRepository.findByUpperCode(upperCode);
     }
+
+    public AddressEntity getAddrByCode(String code) {
+        return addressRepository.findByCode(code).get(0);
+    }
 }
 
