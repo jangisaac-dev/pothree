@@ -36,94 +36,103 @@ function SubmitUseForm() {
   };
 
   return (
-    <FormContainer onSubmit={handleSubmit(onSubmit)}>
-      <h1>사용자 개인정보 입력</h1>
-      <InputField error={!!errors.name}>
-        <label htmlFor="name">이름</label>
-        <input
-          type="text"
-          id="name"
-          {...register("name", {
-            required: "이름은 필수 항목입니다.",
-            minLength: {
-              value: 2,
-              message: "이름은 2글자 이상입니다.",
-            },
-          })}
-        />
-        {errors.name && <small role="alert">{errors.name.message}</small>}
-      </InputField>
-      <InputField error={!!errors.phone}>
-        <label htmlFor="phone">연락처</label>
-        <input
-          type="tel"
-          id="phone"
-          {...register("phone", {
-            required: "연락처는 필수 항목입니다.",
-            minLength: {
-              value: 10,
-              message: "전화번호는 10자리이상입니다.",
-            },
-          })}
-        />
-        {errors.phone && <small role="alert">{errors.phone.message}</small>}
-      </InputField>
-      <InputField>
-        <label htmlFor="birthYear">생년월일</label>
-        <div>
-          <select id="birthYear" {...register("birthYear")}>
-            {years.map((year) => (
-              <option key={year} value={year}>
-                {year}
+    <Wrapper>
+      <FormContainer onSubmit={handleSubmit(onSubmit)}>
+        <h1>사용자 개인정보 입력</h1>
+        <InputField error={!!errors.name}>
+          <label htmlFor="name">이름</label>
+          <input
+            type="text"
+            id="name"
+            {...register("name", {
+              required: "이름은 필수 항목입니다.",
+              minLength: {
+                value: 2,
+                message: "이름은 2글자 이상입니다.",
+              },
+            })}
+          />
+          {errors.name && <small role="alert">{errors.name.message}</small>}
+        </InputField>
+        <InputField error={!!errors.phone}>
+          <label htmlFor="phone">연락처</label>
+          <input
+            type="tel"
+            id="phone"
+            {...register("phone", {
+              required: "연락처는 필수 항목입니다.",
+              minLength: {
+                value: 10,
+                message: "전화번호는 10자리이상입니다.",
+              },
+            })}
+          />
+          {errors.phone && <small role="alert">{errors.phone.message}</small>}
+        </InputField>
+        <InputField>
+          <label htmlFor="birthYear">생년월일</label>
+          <div>
+            <select id="birthYear" {...register("birthYear")}>
+              {years.map((year) => (
+                <option key={year} value={year}>
+                  {year}
+                </option>
+              ))}
+            </select>
+            <div>년</div>
+            <select id="birthMonth" {...register("birthMonth")}>
+              {months.map((month) => (
+                <option key={month} value={month}>
+                  {month}
+                </option>
+              ))}
+            </select>
+            <div>월</div>
+            <select id="birthDay" {...register("birthDay")}>
+              {dates.map((day) => (
+                <option key={day} value={day}>
+                  {day}
+                </option>
+              ))}
+            </select>
+            <div>일</div>
+          </div>
+        </InputField>
+        <InputField>
+          <label htmlFor="careLevel">장기요양등급</label>
+          <select id="careLevel" {...register("careLevel")}>
+            {careLevels.map((level) => (
+              <option key={level.value} value={level.value}>
+                {level.label}
               </option>
             ))}
           </select>
-          <div>년</div>
-          <select id="birthMonth" {...register("birthMonth")}>
-            {months.map((month) => (
-              <option key={month} value={month}>
-                {month}
-              </option>
-            ))}
+        </InputField>
+        <InputField>
+          <label htmlFor="gender">성별</label>
+          <select id="gender" {...register("gender")}>
+            <option value="male">남성</option>
+            <option value="female">여성</option>
+            <option value="Gay">Gay</option>
           </select>
-          <div>월</div>
-          <select id="birthDay" {...register("birthDay")}>
-            {dates.map((day) => (
-              <option key={day} value={day}>
-                {day}
-              </option>
-            ))}
-          </select>
-          <div>일</div>
-        </div>
-      </InputField>
-      <InputField>
-        <label htmlFor="careLevel">장기요양등급</label>
-        <select id="careLevel" {...register("careLevel")}>
-          {careLevels.map((level) => (
-            <option key={level.value} value={level.value}>
-              {level.label}
-            </option>
-          ))}
-        </select>
-      </InputField>
-      <InputField>
-        <label htmlFor="gender">성별</label>
-        <select id="gender" {...register("gender")}>
-          <option value="male">남성</option>
-          <option value="female">여성</option>
-          <option value="Gay">Gay</option>
-        </select>
-      </InputField>
-      <SubmitBtn type="submit">제출</SubmitBtn>
-    </FormContainer>
+        </InputField>
+        <SubmitBtn type="submit">제출</SubmitBtn>
+      </FormContainer>
+    </Wrapper>
   );
 }
 
+const Wrapper = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+`;
 const FormContainer = styled.form`
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: center;
   width: 40%;
   height: 100%;
   background-color: white;
@@ -132,6 +141,7 @@ const FormContainer = styled.form`
 const InputField = styled.div`
   width: 100%;
   margin-bottom: 2%;
+  /* display: flex; */
 
   div {
     display: flex;
@@ -167,12 +177,16 @@ const InputField = styled.div`
 `;
 
 const SubmitBtn = styled.button`
+  display: flex;
   width: 200px;
   height: 30px;
   border-radius: 25px;
   background: var(--Color-8, #8091c9);
   outline: none;
   color: white;
+  justify-content: center;
+  align-items: center;
+  border: none;
 `;
 
 export default SubmitUseForm;
