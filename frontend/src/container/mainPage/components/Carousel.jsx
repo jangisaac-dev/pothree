@@ -41,6 +41,16 @@ const Carousel = () => {
 
   useEffect(() => {
     resetInterval();
+
+    return () => {
+      if (intervalRef.current) {
+        clearInterval(intervalRef.current);
+      }
+    };
+  }, []);
+
+  useEffect(() => {
+    resetInterval();
   }, [ImageIdx]);
 
   const handleDotClick = (idx) => {
@@ -52,7 +62,7 @@ const Carousel = () => {
       <ShowContainer>
         <ImageContainer imageidx={ImageIdx}>
           {Array.from({ length: Total_Image }).map((_, index) => (
-            <ImageDiv></ImageDiv>
+            <ImageDiv key={index} />
           ))}
         </ImageContainer>
       </ShowContainer>
@@ -64,7 +74,7 @@ const Carousel = () => {
               key={index}
               active={index === ImageIdx}
               onClick={() => handleDotClick(index)}
-            ></Dots>
+            />
           ))}
         </DotsDiv>
         <NextPrevBtn onClick={handleNextImage}>&gt;</NextPrevBtn>
@@ -78,6 +88,7 @@ export default Carousel;
 const Container = styled.div`
   display: flex;
   flex-direction: column;
+  height: 350px; // 여기 높이를 조정하시면 이미지 크기가 달라집니다
 `;
 
 const ImageContainer = styled.div`
@@ -89,6 +100,7 @@ const ImageContainer = styled.div`
 
 const ShowContainer = styled.div`
   width: 800px;
+  height: 100%;
   overflow: hidden;
   display: flex;
   flex-direction: row;
@@ -97,7 +109,6 @@ const ShowContainer = styled.div`
 
 const ImageDiv = styled.div`
   width: 800px;
-  height: 377px;
   background-color: gray;
   border-radius: 30px;
 `;
@@ -111,6 +122,7 @@ const ButtonDiv = styled.div`
 `;
 
 const NextPrevBtn = styled.button`
+  cursor: pointer;
   border: none;
   background-color: white;
   font-size: 40px;
@@ -127,6 +139,7 @@ const DotsDiv = styled.div`
 `;
 
 const Dots = styled.div`
+  cursor: pointer;
   width: ${(prop) => (prop.active ? "40px" : "20px")};
   background-color: ${(props) => (props.active ? "gray" : "black")};
   border-radius: 20px;
