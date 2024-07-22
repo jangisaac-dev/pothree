@@ -16,5 +16,8 @@ public interface JobSeekerRepository extends JpaRepository<JobSeekerEntity, Long
     // 이름으로 구직자를 조회하는 메서드 추가
     List<JobSeekerEntity> findByNameContainingIgnoreCase(String name);
 
+    List<JobSeekerEntity> findByAddressContainingIgnoreCase(String address);
+
+
     boolean existsByEmail(String email);
 }
