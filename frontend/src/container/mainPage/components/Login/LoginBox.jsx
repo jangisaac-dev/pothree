@@ -3,6 +3,7 @@ import styled from "styled-components";
 import { useState } from "react";
 import kakaoLogin from "../../../../images/kakaoLogin.png";
 import AdminLogin from "./components/AdminLogin";
+import { REST_API_KEY, REDIRECT_URI } from "../../../../config/RESTAPI";
 
 const LoginBox = () => {
   const [checked, setChecked] = useState(false);
@@ -10,7 +11,11 @@ const LoginBox = () => {
   const handleToggle = () => {
     setChecked(!checked);
   };
+  const link = `https://kauth.kakao.com/oauth/authorize?client_id=${REST_API_KEY}&redirect_uri=${REDIRECT_URI}&response_type=code`;
 
+  const loginHandler = () => {
+    window.location.href = link;
+  };
   return (
     <Wrapper>
       <ToggleDiv>
@@ -33,7 +38,7 @@ const LoginBox = () => {
       {checked ? (
         <AdminLogin />
       ) : (
-        <ImageDiv>
+        <ImageDiv onClick={loginHandler}>
           <img src={kakaoLogin} alt="" width={300} height={80} />
         </ImageDiv>
       )}
@@ -44,9 +49,8 @@ const LoginBox = () => {
 export default LoginBox;
 
 const Wrapper = styled.div`
-  width: 560px;
-  /* height: 300px; */
-  aspect-ratio: 3/1;
+  width: 30%;
+  height: 270px;
   border-radius: 40px;
   border: 3px solid #ededed;
   background: #f0eded;
@@ -64,7 +68,7 @@ const ToggleDiv = styled.div`
   align-items: center;
   gap: 20px;
   position: absolute;
-  top: 50px;
+  top: 20px;
 `;
 
 const ToggleContainer = styled.div`
@@ -109,4 +113,5 @@ const ToggleInput = styled.input`
 `;
 const ImageDiv = styled.div`
   margin-top: 40px;
+  cursor: pointer;
 `;
