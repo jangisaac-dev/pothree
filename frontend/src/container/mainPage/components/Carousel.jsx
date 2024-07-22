@@ -32,7 +32,6 @@ const Carousel = () => {
 
     useEffect(() => {
         resetInterval(); 
-
     
         return () => {
             if (intervalRef.current) {
@@ -110,6 +109,7 @@ align-items: center;
 `
 
 const NextPrevBtn = styled.button`
+cursor: pointer;
 border: none;
 background-color: white;
 font-size: 40px;
@@ -126,6 +126,7 @@ margin-right:20px;
 `
 
 const Dots = styled.div`
+cursor: pointer;
 width: ${(prop) => (prop.active ? '40px' : '20px')};
 background-color: ${(props) => (props.active ? 'gray' : 'black')};
 border-radius: 20px;
