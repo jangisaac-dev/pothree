@@ -3,39 +3,52 @@ import styled from "styled-components";
 import Home from "../../images/home.png";
 import Person1 from "../../images/person1.png";
 import Person2 from "../../images/person2.png";
+import { useNavigate } from "react-router-dom";
 
 const SignUpPage = () => {
-    return (
-        <>
-            <Container>
-                <QuesDiv>
-                  <QuesSpan>아직 회원이 아닙니다</QuesSpan>
-                  <QuesSpan>회원가입 하시겠습니까?</QuesSpan>
-                </QuesDiv>
+  const navigate = useNavigate();
 
-                <SignupContainer>
-                  <SignupDiv>
-                      <ProfileImg />
-                      <WhichSignup>
-                      <SignupSpan> 일반 회원가입</SignupSpan>
-                      </WhichSignup>
-                  </SignupDiv>
+  const handleSignUpClick = () => {
+    navigate("/upload");
+  };
 
-                  <SignupDiv>
-                      <ProfileImg2 />
-                      <WhichSignup2>
-                      <SignupSpan> 요양 보호자 회원가입</SignupSpan>
-                      </WhichSignup2>
-                  </SignupDiv>
-                </SignupContainer>
+  const handleJobSeekerSignUpClick = () => {
+    navigate("/upload?upload=true");
+  };
 
-                <HomeDiv>
-                  <HomeIcon />
-                  <ToHome>홈으로 돌아가기</ToHome>
-                </HomeDiv>
-            </Container>
-        </>
-    );
+  const handleHomeClick = () => {
+    navigate("/");
+  };
+
+  return (
+    <Container>
+      <QuesDiv>
+        <QuesSpan>아직 회원이 아닙니다</QuesSpan>
+        <QuesSpan>회원가입 하시겠습니까?</QuesSpan>
+      </QuesDiv>
+
+      <SignupContainer>
+        <SignupDiv onClick={handleSignUpClick}>
+          <ProfileImg />
+          <WhichSignup>
+            <SignupSpan>일반 회원가입</SignupSpan>
+          </WhichSignup>
+        </SignupDiv>
+
+        <SignupDiv onClick={handleJobSeekerSignUpClick}>
+          <ProfileImg2 />
+          <WhichSignup2>
+            <SignupSpan>요양 보호자 회원가입</SignupSpan>
+          </WhichSignup2>
+        </SignupDiv>
+      </SignupContainer>
+
+      <HomeDiv onClick={handleHomeClick}>
+        <HomeIcon />
+        <ToHome>홈으로 돌아가기</ToHome>
+      </HomeDiv>
+    </Container>
+  );
 };
 
 export default SignUpPage;
