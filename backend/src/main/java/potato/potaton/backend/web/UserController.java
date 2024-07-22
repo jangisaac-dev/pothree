@@ -1,18 +1,13 @@
 package potato.potaton.backend.web;
 
-import com.google.gson.Gson;
-import com.google.gson.stream.JsonReader;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
-import potato.potaton.backend.domain.AddressEntity;
-import potato.potaton.backend.dto.AddressListDto;
+import org.webjars.NotFoundException;
 import potato.potaton.backend.repository.AddressRepository;
 import potato.potaton.backend.util.JwtTokenProvider;
-
-import java.io.File;
-import java.io.FileReader;
 
 @RestController("/")
 public class UserController {
@@ -30,13 +25,15 @@ public class UserController {
     }
 
     @GetMapping("token-check")
-    public String tokenCheck(@RequestParam("token") String token) {
+    public ResponseEntity<Long> tokenCheck(@RequestParam("token") String token) {
         try {
             Long id = tokenProvider.extractId(token);
-            return "" + id;
+            return ResponseEntity.ok(id);
+//            return "" + id;
         } catch (Exception e) {
             e.printStackTrace();
-            return e.getLocalizedMessage();
+            throw new NotFoundException("없는 사용자입니다.");
+//            return e.getLocalizedMessage();
         }
     }
 

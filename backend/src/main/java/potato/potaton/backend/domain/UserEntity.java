@@ -38,4 +38,12 @@ public class UserEntity extends BaseEntity{
         this.password = password;
         this.role = role;
     }
+
+    public void changeRole(String newRole) {
+        if ("USER_PENDING".equals(this.role) || "USER".equals(this.role)) {
+            this.role = newRole;
+        } else {
+            throw new IllegalStateException("Cannot change role from " + this.role);
+        }
+    }
 }

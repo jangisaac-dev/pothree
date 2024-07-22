@@ -26,7 +26,7 @@ public class SignUpDto {
                     .phone(this.phone)
                     .email(this.email)
                     .password(this.password)
-                    .role(this.role)
+                    .role("USER_PENDING") // 기본 대기로 설정
                     .build();
         }
     }

@@ -24,7 +24,10 @@ public enum ErrorCode {
     SYSTEM_ERROR("시스템 오류가 발생했습니다."),
     SERVICE_UNAVAILABLE("서비스를 이용할 수 없습니다."),
     INVALID_TOKEN("유효하지 않은 토큰입니다."),
-    SESSION_EXPIRED("세션이 만료되었습니다.")
+    SESSION_EXPIRED("세션이 만료되었습니다."),
+    USER_NOT_APPROVED("승인되지 않은 유저입니다."),
+    DUPLICATE_EMAIL("이미 사용중인 이메일입니다."),
+    INVALID_LOGIN("로그인정보가 잘못되었습니다.")
     ;
 
     private final String description;

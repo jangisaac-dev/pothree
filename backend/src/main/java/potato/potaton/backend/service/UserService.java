@@ -33,7 +33,7 @@ public class UserService {
                 .phone(request.toEntity().getPhone())
                 .email(request.toEntity().getEmail())
                 .password(request.toEntity().getPassword())
-                .role(request.toEntity().getRole())
+                .role("USER_PENDING")
                 .build();
 
         return userRepository.save(userEntity);
@@ -47,8 +47,20 @@ public class UserService {
         if (!request.getPassword().equals(userEntity.getPassword())) {
             throw new CustomException(ErrorCode.PASSWORD_NOT_MATCH);
         }
+        if ("USER_PENDING".equals(userEntity.getRole())) {
+            throw new CustomException(ErrorCode.USER_NOT_APPROVED); // 승인되지 않은 유저
+        }
 
         return userEntity;
     }
+    @Transactional
+    public void approveUser(Long userId) {
+        UserEntity userEntity = userRepository.findById(userId)
+                .orElseThrow(() -> new CustomException(ErrorCode.USER_NOT_FOUND));
+
+        if ("USER_PENDING".equals(userEntity.getRole())) {
+            userEntity.changeRole("USER"); // 승인된 유저로 변경
+            userRepository.save(userEntity);
+        }
+    }
 }
- 

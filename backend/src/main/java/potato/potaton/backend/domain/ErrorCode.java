@@ -1,11 +1,7 @@
 package potato.potaton.backend.domain;
 
-import lombok.Getter;
-import lombok.ToString;
 import org.springframework.http.HttpStatus;
 
-@Getter
-@ToString
 public enum ErrorCode {
 
     RUNTIME_EXCEPTION(HttpStatus.BAD_REQUEST, "400","400 BAD REQUEST"),
@@ -16,9 +12,8 @@ public enum ErrorCode {
     INTERNAL_SERVER_EXCEPTION(HttpStatus.INTERNAL_SERVER_ERROR, "500", "500 SERVER ERROR"),
     EXPIRED_REFRESH_TOKEN(HttpStatus.UNAUTHORIZED,"1006","1006 EXPIRED REFRESH TOKEN"),
     EXPIRED_ACCESS_TOKEN(HttpStatus.UNAUTHORIZED,"1007","1007 EXPIRED ACCESS TOKEN"),
-    BAD_REQUEST_EXCEPTION(HttpStatus.UNAUTHORIZED,"404","404 BAD REQUEST EXCEPTION"),
+    BAD_REQUEST_EXCEPTION(HttpStatus.BAD_REQUEST,"404","404 BAD REQUEST EXCEPTION"),
     UNAUTHORIZED_EXCEPTION(HttpStatus.UNAUTHORIZED,"2001","2001 dosen't have the necessary permission");
-
 
     private final HttpStatus httpStatus;
     private final String code;
@@ -29,4 +24,18 @@ public enum ErrorCode {
         this.code = code;
         this.message = message;
     }
+
+    public HttpStatus getHttpStatus() {
+        return httpStatus;
+    }
+
+    public String getCode() {
+        return code;
+    }
+
+    public String getMessage() {
+        return message;
+    }
+
+
 }

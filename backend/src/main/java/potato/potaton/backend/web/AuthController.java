@@ -9,7 +9,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.webjars.NotFoundException;
 import potato.potaton.backend.domain.UserEntity;
-import potato.potaton.backend.dto.SignUpDto;
 import potato.potaton.backend.service.UserService;
 import potato.potaton.backend.util.JwtTokenProvider;
 
@@ -30,15 +29,9 @@ public class AuthController {
             String token = tokenProvider.createAccessToken(user.getId());
             return ResponseEntity.ok(token);
         } catch (NotFoundException e) {
-            //사용자 정보가 없으면 새로운 사용자 생성
-            SignUpDto.SignUpRequest signUpRequest = SignUpDto.SignUpRequest.builder()
-                    .email("kakao" + kakaoKey)
-                    .build();
-
-            UserEntity newUser = userService.signUp(signUpRequest);
-            //새로운 사용자 토큰 생성
-            String token = tokenProvider.createAccessToken(newUser.getId());
-            return ResponseEntity.ok(token);
+            //사용자 정보를 찾을 수 없으면 적절한 오류 메시지 반환
+            log.error("사용자 정보를 찾을 수 없습니다: kakaoKey= {}", kakaoKey);
+            return ResponseEntity.status(404).body("사용자 정보를 찾을 수 없습니다.");
         } catch (Exception e) {
             //인증 오류 시 에러 메시지 반환
             log.error("Kakao 인증 중 오류 발생: {}", e.getMessage(), e);
