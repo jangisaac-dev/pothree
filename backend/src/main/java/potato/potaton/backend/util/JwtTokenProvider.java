@@ -13,6 +13,7 @@ import org.apache.commons.codec.binary.Hex;
 import org.apache.commons.codec.binary.StringUtils;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
+import potato.potaton.backend.dto.JwtTokenDto;
 import potato.potaton.backend.service.UserService;
 
 import javax.crypto.Cipher;
@@ -51,6 +52,10 @@ public class JwtTokenProvider {
     private SecretKey getSigningKey() {
         byte[] keyBytes = Decoders.BASE64.decode(this.secretKey);
         return Keys.hmacShaKeyFor(keyBytes);
+    }
+
+    public JwtTokenDto issueToken(Long id) {
+        return new JwtTokenDto(createAccessToken(id), createRefreshToken(id));
     }
 
     public String createAccessToken(Long id) {
