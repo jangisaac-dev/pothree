@@ -1,98 +1,116 @@
 import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import axios from 'axios';
-
+import { useNavigate } from 'react-router-dom';
 // 선택된 지역의 요양사를 보여주는곳
 
-const ShowSeeker = ({lastAddress}) => {
+const ShowSeeker = () => {
 
 const DommyData = [
     {
+        id:1,
         address: "[ls로_143]",
         hourMoney: 3000,
-        gender: "Gay",
+        gender: "남",
         age: "60세",
         workHours: "9:00-18:00",
     },
     {
+        id:2,
         address: "[ls로_143]",
         hourMoney: 3000,
-        gender: "Gay",
+        gender: "남",
         age: "61세",
         workHours: "9:00-18:00",
     },
     {
+        id:3,
         address: "[ls로_143]",
         hourMoney: 3000,
-        gender: "Gay",
+        gender: "남",
         age: "62세",
         workHours: "9:00-18:00",
     },
     {
+        id:4,
         address: "[ls로_143]",
         hourMoney: 3000,
-        gender: "Gay",
+        gender: "남",
         age: "63세",
         workHours: "9:00-18:00",
     },
     {
+        id:5,
         address: "[ls로_143]",
         hourMoney: 3000,
-        gender: "Gay",
+        gender: "여",
         age: "64세",
         workHours: "9:00-18:00",
     },
     {
+        id:5,
         address: "[ls로_143]",
         hourMoney: 3000,
-        gender: "Gay",
+        gender: "여",
         age: "65세",
         workHours: "9:00-18:00",
     },
     {
+        id:6,
         address: "[ls로_143]",
         hourMoney: 3000,
-        gender: "Gay",
+        gender: "여",
         age: "66세",
         workHours: "9:00-18:00",
     },
     {
+        id:7,
         address: "[ls로_143]",
         hourMoney: 3000,
-        gender: "Gay",
+        gender: "여",
         age: "67세",
         workHours: "9:00-18:00",
     },
     {
+        id:8,
         address: "[ls로_143]",
         hourMoney: 3000,
-        gender: "Gay",
+        gender: "여",
         age: "68세",
         workHours: "9:00-18:00",
     },
     {
+        id:9,
         address: "[ls로_143]",
         hourMoney: 3000,
-        gender: "Gay",
+        gender: "여",
         age: "69세",
         workHours: "9:00-18:00",
     },
     ];
 
-    const [Seekers, setSeekers] = useState([]);
-    const [currentPage,setCurrentPage] = useState(1);
+    const navigate = useNavigate();
+    const [currentPage, setCurrentPage] = useState(0);
 
-    const MakeTDArray = (arr,size) => {
+    const MakeTDArray = (arr, size) => {
         const result = [];
-        for(let i =0;i<arr.length;){
-            result.push(arr.slice(i,i+=size));
+        for (let i = 0; i < arr.length; i += size) {
+            result.push(arr.slice(i, i + size));
         }
         return result;
     };
-    
-    let SeekerArray = MakeTDArray(DommyData,5);
 
-    // useEffect(() => {
+    let SeekerArray = MakeTDArray(DommyData, 5);
+
+    const handlePage = (idx) => {
+        setCurrentPage(idx);
+    };
+
+    const handlePath = (id) => {
+        navigate(`/seekerInfo?id=${id}`);
+    };
+
+     // useEffect(() => {
     //     const fetchData = async() => {
     //         try {
     //             const response = await axios.get('');
@@ -104,17 +122,12 @@ const DommyData = [
     //     fetchData();
     // },[]);
 
-    const handlePage = (idx) => {
-        setCurrentPage(idx);
-    }
-    
-
     return (
         <SeekerList>
             {SeekerArray.length > 0 ? (
-                SeekerArray[currentPage].map(data => (
-                    <PersonalSeeker>
-                        <InfoContainer>
+                SeekerArray[currentPage].map((data) => (
+                    <PersonalSeeker key={data.id}>
+                        <InfoContainer onClick={() => handlePath(data.id)}>
                             <Infodiv>
                                 <Topdiv>
                                     <Position>{data.address}</Position>
@@ -128,19 +141,23 @@ const DommyData = [
                                 </OtherInfodiv>
                             </Infodiv>
                         </InfoContainer>
-                        <ProfileImg>프로실 사진</ProfileImg>
+                        <ProfileImg onClick={() => handlePath(data.id)}>프로필 사진</ProfileImg>
                     </PersonalSeeker>
                 ))
-            ):<div>아무것도 없어요</div>}
-            
+            ) : (
+                <div>아무것도 없어요</div>
+            )}
+
             <BtnDiv>
-            {SeekerArray.length > 0 ? (
-                SeekerArray.map((data, pageidx) => (
-                    <PageBtn onClick={() => {
-                        handlePage(pageidx)
-                    }}>{pageidx+1}</PageBtn>
-                ))
-            ):<div>아무것도 없어요</div>}
+                {SeekerArray.length > 0 ? (
+                    SeekerArray.map((_, pageidx) => (
+                        <PageBtn key={pageidx} onClick={() => handlePage(pageidx)}>
+                            {pageidx + 1}
+                        </PageBtn>
+                    ))
+                ) : (
+                    <div>아무것도 없어요</div>
+                )}
             </BtnDiv>
         </SeekerList>
     );
@@ -165,12 +182,12 @@ align-items: center;
 `
 
 const InfoContainer = styled.div`
-width: 70%;
+cursor: pointer;
+width: 60%;
 justify-content: space-between;
 `
 
 const Position = styled.span`
-cursor: pointer;
 color: #000;
 text-align: center;
 font-family: "Open Sans";
@@ -181,6 +198,7 @@ line-height: 116.7%;
 `
 
 const ProfileImg = styled.div`
+cursor: pointer;
 width: 75px;
 height: 75px;
 border-radius: 20px;

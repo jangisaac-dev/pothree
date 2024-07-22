@@ -8,8 +8,6 @@ import ShowSeeker from "./ShowSeeker";
 
 const Finder = () => {
 
-  const [lastAddress,setLastAddress] = useState('');
-
   return (
     // <SeekerInfoPage/>  
     <Wrapper>
@@ -17,8 +15,8 @@ const Finder = () => {
         <Header />
         <Title>요양사 찾기</Title>
         <ImageDiv/>
-        <SelectPos setAddress={setLastAddress}/>
-        <ShowSeeker lastAddress={lastAddress}/>
+        <SelectPos/>
+        <ShowSeeker/>
       </ContentWrapper>
     </Wrapper>
   );

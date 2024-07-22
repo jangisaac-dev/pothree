@@ -109,7 +109,7 @@ const SelectPos = ({setAddress}) => {
           ))}
         </Selecter>
       </SelectBox>
-      <SubmitButton onClick={() => setAddress(selectedSubdistrict)}>
+      <SubmitButton onClick={() => {}}>
         내 지역 요양사 검색
       </SubmitButton>
     </Wrapper>
