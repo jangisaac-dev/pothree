@@ -6,11 +6,13 @@ import Carousel from "./components/Carousel";
 const MainPage = () => {
   return (
     <Wrapper>
-      <Header />
-      <Banner>
-        <LoginBox />
-      </Banner>
-      <Carousel />
+      <ContentWrapper>
+        <Header />
+        <Banner>
+          <Carousel />
+          <LoginBox />
+        </Banner>
+      </ContentWrapper>
     </Wrapper>
   );
 };
@@ -18,7 +20,13 @@ const MainPage = () => {
 export default MainPage;
 
 const Wrapper = styled.div`
+  display: flex;
   width: 100%;
+  justify-content: center;
+`;
+const ContentWrapper = styled.div`
+  width: 100%;
+  max-width: 1920px;
   height: 100%;
   display: flex;
   flex-direction: column;
