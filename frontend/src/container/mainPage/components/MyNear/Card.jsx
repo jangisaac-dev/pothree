@@ -20,6 +20,7 @@ const CardContainer = styled.div`
   display: flex;
   justify-content: space-around;
   align-items: center;
+  margin: 50px 0;
   flex-direction: column;
   width: 472px;
   height: 706px;
@@ -35,11 +36,11 @@ const CardContainer = styled.div`
 
 const Content = styled.div`
   h1 {
-    font-size: 40px;
+    font-size: 60px;
   }
   div {
     margin-bottom: 4px;
-    font-size: 25px;
+    font-size: 30px;
   }
 `;
 

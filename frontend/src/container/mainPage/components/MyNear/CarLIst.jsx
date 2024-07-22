@@ -16,14 +16,15 @@ const CardList = ({ cards }) => {
 
 const Container = styled.div`
   display: flex;
-  width: 100%;
   overflow-x: auto;
 `;
 
 const ScrollContainer = styled.div`
   display: flex;
+  gap: 50px;
   overscroll-behavior-x: auto;
   background-color: #8497d9;
+  padding: 0 50px;
 `;
 
 export default CardList;
