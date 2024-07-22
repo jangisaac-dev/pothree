@@ -55,9 +55,7 @@ const Carousel = () => {
             <ShowContainer>
                 <ImageContainer imageidx={ImageIdx}>
                 {Array.from({length:Total_Image}).map((_,index) => 
-                <ImageDiv
-                key={index}
-                />
+                <ImageDiv key={index}></ImageDiv>
                 )}
                 </ImageContainer>
                 <ButtonDiv>
