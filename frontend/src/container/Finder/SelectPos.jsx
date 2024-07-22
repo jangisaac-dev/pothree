@@ -109,7 +109,8 @@ const SelectPos = ({setAddress}) => {
           ))}
         </Selecter>
       </SelectBox>
-      <SubmitButton onClick={() => {}}>
+      <SubmitButton onClick={() => 
+        (alert('요양사 검색'))}>
         내 지역 요양사 검색
       </SubmitButton>
     </Wrapper>

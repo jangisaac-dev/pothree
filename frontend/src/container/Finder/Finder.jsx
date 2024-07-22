@@ -9,7 +9,6 @@ import ShowSeeker from "./ShowSeeker";
 const Finder = () => {
 
   return (
-    // <SeekerInfoPage/>  
     <Wrapper>
       <ContentWrapper>
         <Header />

@@ -53,8 +53,6 @@ const PersonalInfo = ({ seeker }) => {
     );
 };
 
-
-
 export default PersonalInfo;
 
 const Container = styled.div`

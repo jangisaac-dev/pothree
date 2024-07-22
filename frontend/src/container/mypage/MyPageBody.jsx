@@ -42,8 +42,6 @@ const MyPageBody = () => {
         },
     ]
 
-    
-
     return (
         <Container>
             <MyInfoContainer>
