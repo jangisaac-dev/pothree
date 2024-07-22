@@ -1,50 +1,33 @@
 import React from "react";
 import styled from "styled-components";
+import backgroundImage from "../../../images/find.png";
 
 const Find = () => {
   return (
-    <Wrapper>
-      <ContentWrapper>
-        <TextDiv>
-          <FindText>요양 보호사 찾기</FindText>
-          <ExplainText>
-            나에게 딱 맞는 요양사를 찾아보세요
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              width="102"
-              height="24"
-              viewBox="0 0 102 24"
-              fill="none"
-            >
-              <path
-                d="M101.061 13.0607C101.646 12.4749 101.646 11.5251 101.061 10.9393L91.5147 1.3934C90.9289 0.807611 89.9792 0.807611 89.3934 1.3934C88.8076 1.97919 88.8076 2.92893 89.3934 3.51472L97.8787 12L89.3934 20.4853C88.8076 21.0711 88.8076 22.0208 89.3934 22.6066C89.9792 23.1924 90.9289 23.1924 91.5147 22.6066L101.061 13.0607ZM0 13.5H100V10.5H0V13.5Z"
-                fill="#E5FF9B"
-              />
-            </svg>
-          </ExplainText>
-        </TextDiv>
-        <SignUpDiv>로그인 후 이용 가능</SignUpDiv>
-      </ContentWrapper>
-    </Wrapper>
+    <ContentWrapper>
+      <TextDiv>
+        <FindText>요양 보호사 찾기</FindText>
+        <ExplainText>나에게 딱 맞는 요양사를 찾아보세요</ExplainText>
+      </TextDiv>
+      <SignUpDiv>로그인 후 이용 가능</SignUpDiv>
+    </ContentWrapper>
   );
 };
 
 export default Find;
-const Wrapper = styled.div`
-  width: 100%;
-  display: flex;
-  justify-content: center;
-`;
 
 const ContentWrapper = styled.div`
-  width: 85%;
-  height: 300px;
+  width: 100%;
+  height: 250px;
   display: flex;
   justify-content: space-around;
   align-items: center;
   background-color: green;
   border-radius: 20px;
   gap: 100px;
+  background-image: url(${backgroundImage});
+  background-size: cover; /* 배경 이미지가 컨테이너 크기에 맞게 조절됩니다. */
+  background-position: center; /* 배경 이미지가 중앙에 위치합니다. */
 `;
 
 const TextDiv = styled.div`
@@ -52,7 +35,7 @@ const TextDiv = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
+  justify-content: flex-start;
   gap: 20px;
 `;
 

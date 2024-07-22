@@ -45,7 +45,8 @@ export default LoginBox;
 
 const Wrapper = styled.div`
   width: 560px;
-  height: 377px;
+  /* height: 300px; */
+  aspect-ratio: 3/1;
   border-radius: 40px;
   border: 3px solid #ededed;
   background: #f0eded;
@@ -71,7 +72,7 @@ const ToggleContainer = styled.div`
   height: 50px;
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  justify-content: space-around;
   position: relative;
   border-radius: 30px;
   background: white;
