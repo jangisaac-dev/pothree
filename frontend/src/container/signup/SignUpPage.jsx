@@ -1,41 +1,54 @@
 import React from "react";
 import styled from "styled-components";
+import { useNavigate } from "react-router-dom";
 import Home from "../../images/home.png";
 import Person1 from "../../images/person1.png";
 import Person2 from "../../images/person2.png";
 
 const SignUpPage = () => {
-    return (
-        <>
-            <Container>
-                <QuesDiv>
-                  <QuesSpan>아직 회원이 아닙니다</QuesSpan>
-                  <QuesSpan>회원가입 하시겠습니까?</QuesSpan>
-                </QuesDiv>
+  const navigate = useNavigate();
 
-                <SignupContainer>
-                  <SignupDiv>
-                      <ProfileImg />
-                      <WhichSignup>
-                      <SignupSpan> 일반 회원가입</SignupSpan>
-                      </WhichSignup>
-                  </SignupDiv>
+  const handleGeneralSignup = () => {
+    navigate("/upload");
+  };
 
-                  <SignupDiv>
-                      <ProfileImg2 />
-                      <WhichSignup2>
-                      <SignupSpan> 요양 보호자 회원가입</SignupSpan>
-                      </WhichSignup2>
-                  </SignupDiv>
-                </SignupContainer>
+  const handleCaregiverSignup = () => {
+    navigate("/upload?upload=true");
+  };
 
-                <HomeDiv>
-                  <HomeIcon />
-                  <ToHome>홈으로 돌아가기</ToHome>
-                </HomeDiv>
-            </Container>
-        </>
-    );
+  const handleGoHome = () => {
+    navigate("/");
+  };
+
+  return (
+    <Container>
+      <QuesDiv>
+        <QuesSpan>아직 회원이 아닙니다</QuesSpan>
+        <QuesSpan>회원가입 하시겠습니까?</QuesSpan>
+      </QuesDiv>
+
+      <SignupContainer>
+        <SignupDiv>
+          <ProfileImg />
+          <WhichSignup onClick={handleGeneralSignup}>
+            <SignupSpan>일반 회원가입</SignupSpan>
+          </WhichSignup>
+        </SignupDiv>
+
+        <SignupDiv>
+          <ProfileImg2 />
+          <WhichSignup2 onClick={handleCaregiverSignup}>
+            <SignupSpan>요양 보호자 회원가입</SignupSpan>
+          </WhichSignup2>
+        </SignupDiv>
+      </SignupContainer>
+
+      <HomeDiv onClick={handleGoHome}>
+        <HomeIcon />
+        <ToHome>홈으로 돌아가기</ToHome>
+      </HomeDiv>
+    </Container>
+  );
 };
 
 export default SignUpPage;
@@ -92,6 +105,7 @@ const WhichSignup = styled.div`
   align-items: center;
   justify-content: center;
   margin-left: 20px;
+  cursor: pointer;
 `;
 
 const WhichSignup2 = styled.div`
@@ -104,6 +118,7 @@ const WhichSignup2 = styled.div`
   align-items: center;
   justify-content: center;
   margin-left: 20px;
+  cursor: pointer;
 `;
 
 const SignupSpan = styled.span`
@@ -113,7 +128,6 @@ const SignupSpan = styled.span`
   font-style: normal;
   font-weight: 400;
   line-height: 129.7%;
-  cursor: pointer;
 `;
 
 const ProfileImg = styled.div`

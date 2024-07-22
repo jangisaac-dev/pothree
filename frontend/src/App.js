@@ -13,9 +13,9 @@ const App = () => {
         <Route path="/" element={<MainPage />} />
         <Route path="/kakaoCallBack" element={<KakaoPage />} />
         <Route path="/find" element={<Finder />} />
-        <Route path="signup" element={<SignUpMain />} />
-        <Route path="findJob" element={<SubmitUseForm />} />
-        <Route path="findOldMan" element={<FindOldMan />} />
+        <Route path="/signup" element={<SignUpMain />} />
+        <Route path="/findJob" element={<SubmitUseForm />} />
+        <Route path="/findOldMan" element={<FindOldMan />} />
       </Routes>
     </Router>
   );
