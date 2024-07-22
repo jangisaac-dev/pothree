@@ -34,7 +34,7 @@ const ContentWrapper = styled.div`
   height: 100%;
   display: flex;
   flex-direction: column;
-  gap: 50px;
+  gap: 70px;
 `;
 const Banner = styled.div`
   width: 100%;
