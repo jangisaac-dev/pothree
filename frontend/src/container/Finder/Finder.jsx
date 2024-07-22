@@ -6,6 +6,7 @@ const Finder = () => {
     <Wrapper>
       <ContentWrapper>
         <Header />
+        <Title>요양사 찾기</Title>
       </ContentWrapper>
     </Wrapper>
   );
@@ -25,3 +26,4 @@ const ContentWrapper = styled.div`
   flex-direction: column;
   gap: 70px;
 `;
+const Title = styled.p``;
