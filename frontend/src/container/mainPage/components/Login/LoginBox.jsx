@@ -1,7 +1,8 @@
 import React from "react";
 import styled from "styled-components";
 import { useState } from "react";
-import kakaoLogin from "../../../images/kakaoLogin.png";
+import kakaoLogin from "../../../../images/kakaoLogin.png";
+import AdminLogin from "./components/AdminLogin";
 
 const LoginBox = () => {
   const [checked, setChecked] = useState(false);
@@ -29,7 +30,11 @@ const LoginBox = () => {
           </ToggleContainer>
         </label>
       </ToggleDiv>
-      <img src={kakaoLogin} alt="" width={350} height={80} />
+      {checked ? (
+        <AdminLogin />
+      ) : (
+        <img src={kakaoLogin} alt="" width={300} height={80} />
+      )}
     </Wrapper>
   );
 };
@@ -47,6 +52,7 @@ const Wrapper = styled.div`
   justify-content: center;
   flex-direction: column;
   gap: 70px;
+  position: relative;
 `;
 
 const ToggleDiv = styled.div`
@@ -54,6 +60,8 @@ const ToggleDiv = styled.div`
   display: flex;
   align-items: center;
   gap: 20px;
+  position: absolute;
+  top: 50px;
 `;
 
 const ToggleContainer = styled.div`
