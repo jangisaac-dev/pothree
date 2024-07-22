@@ -14,5 +14,5 @@ import lombok.NoArgsConstructor;
 @Builder
 
 public class UserEntity {
-
+ // for commit
 }
