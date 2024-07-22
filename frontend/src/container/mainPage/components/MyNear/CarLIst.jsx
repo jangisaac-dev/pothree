@@ -23,6 +23,7 @@ const Container = styled.div`
 const ScrollContainer = styled.div`
   display: flex;
   overscroll-behavior-x: auto;
+  background-color: #8497d9;
 `;
 
 export default CardList;
