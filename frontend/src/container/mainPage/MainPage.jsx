@@ -4,6 +4,7 @@ import Header from "../../components/Header";
 import LoginBox from "./components/Login/LoginBox";
 import Carousel from "./components/Carousel";
 import NearBy from "./components/MyNear/NearBy";
+import Find from "./components/Find";
 const MainPage = () => {
   return (
     <Wrapper>
@@ -13,6 +14,7 @@ const MainPage = () => {
           <Carousel />
           <LoginBox />
         </Banner>
+        <Find />
         <NearBy />
       </ContentWrapper>
     </Wrapper>
