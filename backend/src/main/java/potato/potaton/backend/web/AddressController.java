@@ -39,17 +39,18 @@ public class AddressController {
         return ResponseEntity.ok(addressService.getAddrByUpperCode(upperCode.substring(0, 5)));
     }
 
-    @GetMapping("/gpsTest")
-    public ResponseEntity<AddressEntity> gpsTest(@RequestParam("gpsPoint") String gpsPoint) {
-        try {
-            String addr = new AddrAPI().getAddrCode(gpsPoint);
-            return ResponseEntity.ok(addressService.getAddrByCode(addr));
-        } catch (Exception e) {
-            e.printStackTrace();
-            return ResponseEntity.ok(e.getLocalizedMessage());
-        }
-//        return ResponseEntity.ok(service.getAddrByUpperCode(upperCode.substring(0, 5)));
-    }
+//    @GetMapping("/gpsTest")
+//    public ResponseEntity<AddressEntity> gpsTest(@RequestParam("gpsPoint") String gpsPoint) {
+//        try {
+//            String addr = new AddrAPI().getAddrCode(gpsPoint);
+//
+//            return ResponseEntity.ok(addressService.getAddrByCode(addr));
+//        } catch (Exception e) {
+//            e.printStackTrace();
+//            return ResponseEntity.ok(e.getLocalizedMessage());
+//        }
+////        return ResponseEntity.ok(service.getAddrByUpperCode(upperCode.substring(0, 5)));
+//    }
 
 
 }
