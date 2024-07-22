@@ -5,6 +5,7 @@ import MainPage from "./container/mainPage/MainPage";
 import KakaoPage from "./components/KakaoPage";
 import Finder from "./container/Finder/Finder";
 import SubmitUseForm from "./container/submitPersonIfo/submitInfo";
+import FindOldMan from "./container/findOldMan/FindOldMan";
 const App = () => {
   return (
     <Router>
@@ -14,6 +15,7 @@ const App = () => {
         <Route path="/find" element={<Finder />} />
         <Route path="signup" element={<SignUpMain />} />
         <Route path="findJob" element={<SubmitUseForm />} />
+        <Route path="findOldMan" element={<FindOldMan />} />
       </Routes>
     </Router>
   );
