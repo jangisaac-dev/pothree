@@ -28,6 +28,7 @@ const Wrapper = styled.div`
   width: 100%;
   justify-content: center;
 `;
+
 const ContentWrapper = styled.div`
   width: 90%;
   max-width: 1280px;
@@ -36,6 +37,7 @@ const ContentWrapper = styled.div`
   flex-direction: column;
   gap: 70px;
 `;
+
 const Banner = styled.div`
   width: 100%;
   display: flex;
