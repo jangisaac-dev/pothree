@@ -86,6 +86,7 @@ const Carousel = () => {
 export default Carousel;
 
 const Container = styled.div`
+    widht
   display: flex;
   flex-direction: column;
   height: 350px; // 여기 높이를 조정하시면 이미지 크기가 달라집니다
