@@ -9,7 +9,6 @@ import potato.potaton.backend.domain.UserEntity;
 @Getter
 @Builder
 @NoArgsConstructor
-@AllArgsConstructor
 public class SignUpDto {
 
     @Builder
