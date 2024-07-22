@@ -7,7 +7,7 @@ import potato.potaton.backend.type.ErrorCode;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class CustomException {
+public class CustomException extends RuntimeException{
     private ErrorCode errorCode;
     private String errorMessage;
 

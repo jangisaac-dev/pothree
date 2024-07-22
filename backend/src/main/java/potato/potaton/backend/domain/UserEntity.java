@@ -20,6 +20,9 @@ public class UserEntity extends BaseEntity{
     @Column(unique = true)
     private String phone;
 
+    @Column(unique = true)
+    private String kakaoKey;
+
     @NotNull
     private String email;
 
