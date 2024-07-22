@@ -25,7 +25,9 @@ public class AddressEntity {
     private String name;
 
     public AddressEntity(String code, String name) {
+
         this.code = code.toUpperCase(Locale.ROOT);
         this.name = name.toUpperCase(Locale.ROOT);
+
     }
 }
