@@ -8,6 +8,7 @@ import potato.potaton.backend.domain.UserEntity;
 @Builder
 
 public class SignUpDto {
+    @Builder
     public static class SignUpRequest {
         private String email;
         private String password;
