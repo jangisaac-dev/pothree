@@ -2,6 +2,7 @@ import React from "react";
 import styled from "styled-components";
 import Header from "../../components/Header";
 import LoginBox from "./components/LoginBox";
+import Carousel from "./components/Carousel";
 const MainPage = () => {
   return (
     <Wrapper>
@@ -9,6 +10,7 @@ const MainPage = () => {
       <Banner>
         <LoginBox />
       </Banner>
+      <Carousel />
     </Wrapper>
   );
 };
