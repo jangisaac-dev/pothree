@@ -14,7 +14,6 @@ public class JobSeekerDto {
         private String email;
         private String address;
         private String experience;
-        private String serviceType;  // 예를 들어, 봉사나 요양 등
 
         public JobSeekerEntity toEntity() {
             return JobSeekerEntity.builder()
@@ -37,7 +36,6 @@ public class JobSeekerDto {
         private String address;
         private String experience;
 
-        //Dto로 변환시킴
         public static JobSeekerResponseDto fromEntity(JobSeekerEntity entity) {
             return JobSeekerResponseDto.builder()
                     .id(entity.getId())

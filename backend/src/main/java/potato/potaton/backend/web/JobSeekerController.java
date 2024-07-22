@@ -56,6 +56,7 @@ public class JobSeekerController {
     // 구직자 회원가입
     @PostMapping("/register")
     public ResponseEntity<String> registerJobSeeker(@RequestBody JobSeekerDto.JobSeekerRequestDto requestDto) {
+        System.out.println(requestDto.getName());
         String token = jobSeekerService.signUpAndGenerateToken(requestDto);
         return ResponseEntity.ok(token);
     }
