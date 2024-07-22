@@ -30,12 +30,3 @@ const ContentWrapper = styled.div`
   flex-direction: column;
   gap: 70px;
 `;
-
-const Banner = styled.div`
-  width: 100%;
-  display: flex;
-  gap: 30px;
-  justify-content: space-around;
-`;
-
-

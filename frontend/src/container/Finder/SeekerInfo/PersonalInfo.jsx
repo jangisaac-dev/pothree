@@ -1,10 +1,17 @@
 import React from 'react';
 import styled from 'styled-components';
 import CarrerTable from './CarrerTable';
+import { useNavigate } from 'react-router-dom';
 
 // 개인 상세정보 페이지
 
 const PersonalInfo = ({ seeker }) => {
+
+    const navigate = useNavigate();
+    const handleToMypage = () => {
+        navigate("/myPage");
+    }
+
     return (
         <Container>
             <PersonalSeeker>
@@ -38,11 +45,15 @@ const PersonalInfo = ({ seeker }) => {
             </CarrerDiv>
 
             <SelectBtn>
-                <BtnSpan>요양사 선택</BtnSpan>
+                <BtnSpan onClick={() => {
+                    handleToMypage();
+                }}>요양사 선택</BtnSpan>
             </SelectBtn>
         </Container>
     );
 };
+
+
 
 export default PersonalInfo;
 

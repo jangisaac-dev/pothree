@@ -8,15 +8,15 @@ import SeekerInfoPage from "./container/Finder/SeekerInfo/SeekerInfoPage";
 import Mypage from "./container/mypage/Mypage";
 const App = () => {
   return (
-    <Mypage/>
-    // <Router>
-    //   <Routes>
-    //     <Route path="/" element={<MainPage />} />
-    //     <Route path="/kakaoCallBack" element={<KakaoPage />} />
-    //     <Route path="/find" element={<Finder />} />
-    //     <Route path="/seekerInfo" element={<SeekerInfoPage/>}/>
-    //   </Routes>
-    // </Router>
+    <Router>
+      <Routes>
+        <Route path="/" element={<MainPage />} />
+        <Route path="/kakaoCallBack" element={<KakaoPage />} />
+        <Route path="/find" element={<Finder />} />
+        <Route path="/seekerInfo" element={<SeekerInfoPage/>}/>
+        <Route path="/myPage" element={<Mypage/>}/>
+      </Routes>
+    </Router>
   );
 };
 

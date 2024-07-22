@@ -42,6 +42,8 @@ const MyPageBody = () => {
         },
     ]
 
+    
+
     return (
         <Container>
             <MyInfoContainer>
@@ -67,13 +69,13 @@ const MyPageBody = () => {
                 <InfoSet>
                     <InfoName>장기요양등급</InfoName>
                     <InfoDataCon>
-                        <InfoDataSpan>몇급?</InfoDataSpan>
+                        <InfoDataSpan>5급</InfoDataSpan>
                     </InfoDataCon>
                 </InfoSet>
                 <InfoSet>
                     <InfoName>성별</InfoName>
                     <InfoDataCon>
-                        <InfoDataSpan>남성</InfoDataSpan>
+                        <InfoDataSpan>여성</InfoDataSpan>
                     </InfoDataCon>
                 </InfoSet>
                 <ChangBtn>
