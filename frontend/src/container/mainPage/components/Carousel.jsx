@@ -1,11 +1,12 @@
 import React, { useEffect, useRef, useState } from "react";
 import styled from "styled-components";
+import MainImages from "./MainImages";
 
 const WIDTH = 700;
 
 const Carousel = () => {
   const intervalRef = useRef(null);
-  const Total_Image = 4;
+  const Total_Image = MainImages.length;
   const [ImageIdx, setImageIdx] = useState(0);
 
   const handleNextImage = () => {
@@ -40,16 +41,6 @@ const Carousel = () => {
       }
     };
   }, []);
-
-    useEffect(() => {
-        resetInterval(); 
-    
-        return () => {
-            if (intervalRef.current) {
-                clearInterval(intervalRef.current);
-            }
-        };
-    }, []);
  
      useEffect(() => {
         resetInterval();
@@ -63,14 +54,17 @@ const Carousel = () => {
     <Container>
       <ShowContainer>
         <ImageContainer imageidx={ImageIdx}>
-          {Array.from({ length: Total_Image }).map((_, index) => (
-            <ImageDiv key={index}></ImageDiv>
+          {MainImages.map((image, index) => (
+            <ImageDiv
+              key={index}
+              style={{ backgroundImage: `url(${image})` }}
+            />
           ))}
         </ImageContainer>
         <ButtonDiv>
           <NextPrevBtn onClick={handlePervImage}>&lt;</NextPrevBtn>
           <DotsDiv>
-            {Array.from({ length: Total_Image }).map((_, index) => (
+            {MainImages.map((_, index) => (
               <Dots
                 key={index}
                 active={index === ImageIdx}
@@ -98,7 +92,7 @@ const Container = styled.div`
 const ImageContainer = styled.div`
   display: flex;
   flex-direction: row;
-  transform: translateX(${(prop) => -prop.imageidx * { WIDTH }}px);
+  transform: translateX(${(prop) => -prop.imageidx *  WIDTH }px);
   transition: 1s ease-in-out;
 `;
 
@@ -116,6 +110,8 @@ const ImageDiv = styled.div`
   width: ${WIDTH}px;
   background-color: gray;
   border-radius: 30px;
+  background-size: cover;
+  background-position: center;
 `;
 
 const ButtonDiv = styled.div`
