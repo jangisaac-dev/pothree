@@ -1,7 +1,7 @@
 import React, { useEffect, useRef, useState } from "react";
 import styled from "styled-components";
 
-const WIDTH = 400;
+const WIDTH = 700;
 
 const Carousel = () => {
   const intervalRef = useRef(null);
@@ -90,7 +90,7 @@ export default Carousel;
 const Container = styled.div`
   display: flex;
   flex-direction: column;
-  height: 200px;
+  height: 270px;
   width: ${WIDTH}px;
   position: relative;
 `;
