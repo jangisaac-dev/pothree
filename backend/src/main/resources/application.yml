@@ -1,0 +1,19 @@
+spring:
+  datasource:
+    driver-class-name: org.mariadb.jdbc.Driver
+    username: potaton
+    url: jdbc:mysql://isaacnas.duckdns.org:3307/potaton
+    password: BUjvta-M65j0UaK[
+
+  jpa:
+    hibernate:
+      ddl-auto: update
+      naming:
+        physical-strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl
+    show-sql: true
+    open-in-view: true
+
+server:
+  port: 8081
+  error:
+    include-message: always
