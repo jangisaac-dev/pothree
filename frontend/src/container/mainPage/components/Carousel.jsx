@@ -1,6 +1,8 @@
 import React, { useEffect, useRef, useState } from "react";
 import styled from "styled-components";
 
+const WIDTH = 400;
+
 const Carousel = () => {
   const intervalRef = useRef(null);
   const Total_Image = 4;
@@ -41,17 +43,11 @@ const Carousel = () => {
 
   useEffect(() => {
     resetInterval();
-
-    return () => {
-      if (intervalRef.current) {
-        clearInterval(intervalRef.current);
-      }
-    };
-  }, []);
-
-  useEffect(() => {
-    resetInterval();
   }, [ImageIdx]);
+
+  const handleDotClick = (idx) => {
+    setImageIdx(idx);
+  };
 
   return (
     <Container>
@@ -82,36 +78,40 @@ const Carousel = () => {
 export default Carousel;
 
 const Container = styled.div`
-  width : 
   display: flex;
   flex-direction: column;
-  height: 350px; // 여기 높이를 조정하시면 이미지 크기가 달라집니다
+  height: 200px;
+  width: ${WIDTH}px;
+  position: relative;
 `;
 
 const ImageContainer = styled.div`
   display: flex;
   flex-direction: row;
-  transform: translateX(${(prop) => -prop.imageidx * 800}px);
+  transform: translateX(${(prop) => -prop.imageidx * { WIDTH }}px);
   transition: 1s ease-in-out;
 `;
 
 const ShowContainer = styled.div`
-  width: 800px;
+  width: 100%;
   height: 100%;
   overflow: hidden;
   display: flex;
   flex-direction: row;
   justify-content: flex-start;
+  position: relative;
 `;
 
 const ImageDiv = styled.div`
-  width: 800px;
+  width: ${WIDTH}px;
   background-color: gray;
   border-radius: 30px;
 `;
 
 const ButtonDiv = styled.div`
-  width: 800px;
+  position: absolute;
+  bottom: 0;
+  width: 100%;
   display: flex;
   flex-direction: row;
   justify-content: center;
@@ -121,8 +121,8 @@ const ButtonDiv = styled.div`
 const NextPrevBtn = styled.button`
   cursor: pointer;
   border: none;
-  background-color: white;
   font-size: 40px;
+  background-color: transparent;
 `;
 
 const DotsDiv = styled.div`
@@ -138,6 +138,6 @@ const DotsDiv = styled.div`
 const Dots = styled.div`
   cursor: pointer;
   width: ${(prop) => (prop.active ? "40px" : "20px")};
-  background-color: ${(props) => (props.active ? "gray" : "black")};
+  background-color: ${(props) => (props.active ? "lightgray" : "black")};
   border-radius: 20px;
 `;
