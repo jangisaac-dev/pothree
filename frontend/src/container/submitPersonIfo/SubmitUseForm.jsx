@@ -1,7 +1,8 @@
-import React from "react";
+import React, { useState } from "react";
 import { useForm } from "react-hook-form";
 import styled from "styled-components";
 import axios from "axios";
+import queryString from "query-string";
 
 function SubmitUseForm() {
   const {
@@ -9,6 +10,20 @@ function SubmitUseForm() {
     handleSubmit,
     formState: { errors },
   } = useForm();
+
+  const { upload } = queryString.parse(window.location.search);
+  const showImageUpload = upload === "true";
+
+  const [selectedFile, setSelectedFile] = useState("선택된파일 없음");
+
+  const handleFileChange = (event) => {
+    const file = event.target.files[0];
+    if (file) {
+      setSelectedFile(file.name);
+    } else {
+      setSelectedFile("선택된 파일 없음");
+    }
+  };
 
   const years = Array.from(
     { length: 100 },
@@ -27,9 +42,21 @@ function SubmitUseForm() {
 
   const onSubmit = async (data) => {
     try {
-      const response = await axios.post("", data);
+      if (showImageUpload) {
+        const formData = new FormData();
+        formData.append("image", data.image[0]);
 
-      console.log(response.data);
+        const response = await axios.post("", formData, {
+          headers: {
+            "Content-Type": "multipart/form-data",
+          },
+        });
+
+        console.log(response.data);
+      } else {
+        const response = await axios.post("", data);
+        console.log(response);
+      }
     } catch (error) {
       console.error("Error submitting form:", error);
     }
@@ -98,16 +125,18 @@ function SubmitUseForm() {
             <div>일</div>
           </div>
         </InputField>
-        <InputField>
-          <label htmlFor="careLevel">장기요양등급</label>
-          <select id="careLevel" {...register("careLevel")}>
-            {careLevels.map((level) => (
-              <option key={level.value} value={level.value}>
-                {level.label}
-              </option>
-            ))}
-          </select>
-        </InputField>
+        {!showImageUpload && (
+          <InputField>
+            <label htmlFor="careLevel">장기요양등급</label>
+            <select id="careLevel" {...register("careLevel")}>
+              {careLevels.map((level) => (
+                <option key={level.value} value={level.value}>
+                  {level.label}
+                </option>
+              ))}
+            </select>
+          </InputField>
+        )}
         <InputField>
           <label htmlFor="gender">성별</label>
           <select id="gender" {...register("gender")}>
@@ -116,6 +145,20 @@ function SubmitUseForm() {
             <option value="Gay">Gay</option>
           </select>
         </InputField>
+        {showImageUpload && (
+          <InputField error={!!errors.image}>
+            <label htmlfor="image">파일 선택</label>
+            <input
+              type="file"
+              id="image"
+              accept="image/*"
+              {...register("image", { required: "이미지를 선택해주세요" })}
+              onChange={handleFileChange}
+            />
+
+            <span> {selectedFile} </span>
+          </InputField>
+        )}
         <SubmitBtn type="submit">제출</SubmitBtn>
       </FormContainer>
     </Wrapper>
