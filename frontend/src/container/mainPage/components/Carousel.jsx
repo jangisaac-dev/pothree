@@ -79,6 +79,7 @@ export default Carousel;
 const Container = styled.div`
 display: flex;
 flex-direction: column;
+height: 350px; // 여기 높이를 조정하시면 이미지 크기가 달라집니다
 `
 
 const ImageContainer = styled.div`
@@ -90,6 +91,7 @@ transition: 1s ease-in-out;
 
 const ShowContainer = styled.div`
 width: 800px;
+height: 100%;
 overflow: hidden;
 display: flex;
 flex-direction: row;
@@ -98,7 +100,6 @@ justify-content: flex-start;
 
 const ImageDiv = styled.div`
 width: 800px;
-height: 377px;
 background-color: gray;
 border-radius: 30px;
 `
