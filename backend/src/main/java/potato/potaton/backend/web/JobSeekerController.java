@@ -10,6 +10,7 @@ import potato.potaton.backend.exception.CustomException;
 import potato.potaton.backend.service.JobSeekerService;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/api/jobseeker")
@@ -81,5 +82,16 @@ public class JobSeekerController {
 
             return ResponseEntity.status(httpStatus).body(errorMessage);
         }
+
+
+    }
+
+    @GetMapping("/search")
+    public ResponseEntity<List<JobSeekerDto.JobSeekerResponseDto>> findJobSeekersByAddress(@RequestParam String address) {
+        List<JobSeekerEntity> jobSeekers = jobSeekerService.findJobSeekersByAddress(address);
+        List<JobSeekerDto.JobSeekerResponseDto> responseDtos = jobSeekers.stream()
+                .map(JobSeekerDto.JobSeekerResponseDto::fromEntity)
+                .collect(Collectors.toList());
+        return ResponseEntity.ok(responseDtos);
     }
 }

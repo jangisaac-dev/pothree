@@ -111,4 +111,9 @@ public class JobSeekerService {
         JwtTokenDto tokenDto = jwtTokenProvider.issueToken(jobSeekerEntity.getId());
         return tokenDto.getAccessToken();  // AccessToken만 반환
     }
+
+    @Transactional(readOnly = true)
+    public List<JobSeekerEntity> findJobSeekersByAddress(String address) {
+        return jobSeekerRepository.findByAddressContainingIgnoreCase(address);
+    }
 }
