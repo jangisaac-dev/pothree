@@ -4,7 +4,8 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import MainPage from "./container/mainPage/MainPage";
 import KakaoPage from "./components/KakaoPage";
 import Finder from "./container/Finder/Finder";
-import SubmitUseForm from "./container/submitPersonIfo/submitInfo";
+import SubmitUseForm from "./container/submitPersonIfo/SubmitUseForm";
+
 const App = () => {
   return (
     <Router>
@@ -12,8 +13,8 @@ const App = () => {
         <Route path="/" element={<MainPage />} />
         <Route path="/kakaoCallBack" element={<KakaoPage />} />
         <Route path="/find" element={<Finder />} />
-        <Route path="signup" element={<SignUpMain />} />
-        <Route path="findJob" element={<SubmitUseForm />} />
+        <Route path="/signup" element={<SignUpMain />} />
+        <Route path="/upload" element={<SubmitUseForm />} />
       </Routes>
     </Router>
   );
