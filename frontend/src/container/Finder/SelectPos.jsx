@@ -2,6 +2,8 @@ import React from 'react';
 import styled from 'styled-components';
 import ShowSeeker from './ShowSeeker';
 
+// 지역 선택하는곳
+
 const SelectPos = () => {
     const Length = 100;
     return (
