@@ -7,7 +7,7 @@ const App = () => {
     <Router>
       <Routes>
         <Route path="/" element={<MainPage />} />
-        <Route path="/kakoCallBack" element={<SignUpMain />} />
+        <Route path="/kakaoCallBack" element={<SignUpMain />} />
       </Routes>
     </Router>
   );
