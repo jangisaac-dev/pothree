@@ -1,7 +1,8 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import styled from "styled-components";
 
 const Carousel = () => {
+  const intervalRef = useRef(null);
   const Total_Image = 4;
   const [ImageIdx, setImageIdx] = useState(0);
 
@@ -21,28 +22,50 @@ const Carousel = () => {
     }
   };
 
+  const resetInterval = () => {
+    if (intervalRef.current) {
+      clearInterval(intervalRef.current);
+    }
+    intervalRef.current = setInterval(handleNextImage, 3000);
+  };
+
   useEffect(() => {
-    const ImageInterval = setInterval(handleNextImage, 3000);
-    return () => clearInterval(ImageInterval);
+    resetInterval();
+
+    return () => {
+      if (intervalRef.current) {
+        clearInterval(intervalRef.current);
+      }
+    };
   }, []);
+
+  useEffect(() => {
+    resetInterval();
+  }, [ImageIdx]);
+
+  const handleDotClick = (idx) => {
+    setImageIdx(idx);
+  };
 
   return (
     <Container>
       <ShowContainer>
         <ImageContainer imageidx={ImageIdx}>
-          <ImageDiv>{ImageIdx}</ImageDiv>
-          <ImageDiv>{ImageIdx}</ImageDiv>
-          <ImageDiv>{ImageIdx}</ImageDiv>
-          <ImageDiv>{ImageIdx}</ImageDiv>
+          {Array.from({ length: Total_Image }).map((_, index) => (
+            <ImageDiv></ImageDiv>
+          ))}
         </ImageContainer>
       </ShowContainer>
       <ButtonDiv>
         <NextPrevBtn onClick={handlePervImage}>&lt;</NextPrevBtn>
         <DotsDiv>
-          <Dots key={1}></Dots>
-          <Dots key={2}></Dots>
-          <Dots key={3}></Dots>
-          <Dots key={4}></Dots>
+          {Array.from({ length: Total_Image }).map((_, index) => (
+            <Dots
+              key={index}
+              active={index === ImageIdx}
+              onClick={() => handleDotClick(index)}
+            ></Dots>
+          ))}
         </DotsDiv>
         <NextPrevBtn onClick={handleNextImage}>&gt;</NextPrevBtn>
       </ButtonDiv>
@@ -60,12 +83,12 @@ const Container = styled.div`
 const ImageContainer = styled.div`
   display: flex;
   flex-direction: row;
-  transform: translateX(${(prop) => -prop.imageidx * 1100}px);
+  transform: translateX(${(prop) => -prop.imageidx * 800}px);
   transition: 1s ease-in-out;
 `;
 
 const ShowContainer = styled.div`
-  width: 1100px;
+  width: 800px;
   overflow: hidden;
   display: flex;
   flex-direction: row;
@@ -73,14 +96,14 @@ const ShowContainer = styled.div`
 `;
 
 const ImageDiv = styled.div`
-  width: 1100px;
-  height: 500px;
+  width: 800px;
+  height: 377px;
   background-color: gray;
   border-radius: 30px;
 `;
 
 const ButtonDiv = styled.div`
-  width: 1100px;
+  width: 800px;
   display: flex;
   flex-direction: row;
   justify-content: center;
@@ -104,8 +127,7 @@ const DotsDiv = styled.div`
 `;
 
 const Dots = styled.div`
-  width: 20px;
-  height: 20px;
-  background-color: black;
+  width: ${(prop) => (prop.active ? "40px" : "20px")};
+  background-color: ${(props) => (props.active ? "gray" : "black")};
   border-radius: 20px;
 `;
