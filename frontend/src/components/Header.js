@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import icon from "../public/images/icon.png";
+import icon from "../images/icon.png";
 
 const Header = () => {
   return (
