@@ -2,7 +2,7 @@ spring:
   datasource:
     driver-class-name: org.mariadb.jdbc.Driver
     username: potaton
-    url: jdbc:mysql://isaacnas.duckdns.org:3307/potaton
+    url: jdbc:mariadb://isaacnas.duckdns.org:3307/potaton
     password: BUjvta-M65j0UaK[
 
   jpa:
@@ -17,3 +17,9 @@ server:
   port: 8081
   error:
     include-message: always
+
+jwt:
+  secretKey: 2c1320b41c13bbded0dc89429233189f21d481b0554b577cc23d9d0c4ece773275f585f7bca0a541c9acf0462d40934bfdf1a6fbd0f5c9f524b19b7e04e08067
+  accessExpiration: 600000
+  refreshExpiration: 6000000
+  aesKey: C3BB60F2946E838CDC1A1357CB491E10

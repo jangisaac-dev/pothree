@@ -3,8 +3,8 @@ package potato.potaton.backend.service;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
+import org.webjars.NotFoundException;
 import potato.potaton.backend.domain.UserEntity;
 import potato.potaton.backend.dto.SignInRequest;
 import potato.potaton.backend.exception.CustomException;
@@ -18,9 +18,9 @@ import potato.potaton.backend.type.ErrorCode;
 public class UserService {
     private final UserRepository userRepository;
 
-    public UserEntity loadUserByKakaoKey(String kakaoKey) throws UsernameNotFoundException {
+    public UserEntity loadUserByKakaoKey(String kakaoKey) {
         return userRepository.findByKakaoKey(kakaoKey)
-                .orElseThrow(() -> new UsernameNotFoundException("사용자를 찾을 수 없습니다. => " + kakaoKey));
+                .orElseThrow(() -> new NotFoundException("사용자를 찾을 수 없습니다. => " + kakaoKey));
     }
 
     @Transactional
