@@ -1,15 +1,15 @@
 import React from "react";
-import MainPage from "./container/mainPage/MainPage";
-import NearBy from "./container/mainPage/components/MyNear/NearBy";
 import SignUpMain from "./container/signup/SignUpMain";
-
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import MainPage from "./container/mainPage/MainPage";
 const App = () => {
   return (
-    <div>
-      <SignUpMain/>
-      {/* {<MainPage />} */}
-      {/* <NearBy /> */}
-    </div>
+    <Router>
+      <Routes>
+        <Route path="/" element={<MainPage />} />
+        <Route path="/kakoCallback" element={<SignUpMain />} />
+      </Routes>
+    </Router>
   );
 };
 

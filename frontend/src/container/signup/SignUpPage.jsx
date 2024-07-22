@@ -5,37 +5,37 @@ import Person1 from "../../images/person1.png";
 import Person2 from "../../images/person2.png";
 
 const SignUpPage = () => {
-    return (
-        <Wrapper>
-            <Container>
-                <QuesDiv>
-                <QuesSpan>아직 회원이 아닙니다</QuesSpan>
-                <QuesSpan>회원가입 하시겠습니까?</QuesSpan>
-                </QuesDiv>
+  return (
+    <Wrapper>
+      <Container>
+        <QuesDiv>
+          <QuesSpan>아직 회원이 아닙니다</QuesSpan>
+          <QuesSpan>회원가입 하시겠습니까?</QuesSpan>
+        </QuesDiv>
 
-                <SignupContainer>
-                <SignupDiv>
-                    <ProfileImg />
-                    <WhichSignup>
-                    <SignupSpan> 일반 회원가입</SignupSpan>
-                    </WhichSignup>
-                </SignupDiv>
+        <SignupContainer>
+          <SignupDiv>
+            <ProfileImg />
+            <WhichSignup>
+              <SignupSpan> 일반 회원가입</SignupSpan>
+            </WhichSignup>
+          </SignupDiv>
 
-                <SignupDiv>
-                    <ProfileImg2 />
-                    <WhichSignup2>
-                    <SignupSpan> 요양 보호자 회원가입</SignupSpan>
-                    </WhichSignup2>
-                </SignupDiv>
-                </SignupContainer>
+          <SignupDiv>
+            <ProfileImg2 />
+            <WhichSignup2>
+              <SignupSpan> 요양 보호자 회원가입</SignupSpan>
+            </WhichSignup2>
+          </SignupDiv>
+        </SignupContainer>
 
-                <HomeDiv>
-                <HomeIcon />
-                <ToHome>홈으로 돌아가기</ToHome>
-                </HomeDiv>
-            </Container>
-        </Wrapper>
-    );
+        <HomeDiv>
+          <HomeIcon />
+          <ToHome>홈으로 돌아가기</ToHome>
+        </HomeDiv>
+      </Container>
+    </Wrapper>
+  );
 };
 
 export default SignUpPage;
@@ -51,7 +51,7 @@ const Container = styled.div`
   align-items: center;
   justify-content: space-evenly;
   width: 1280px;
-  height: 960px;
+  gap: 100px;
 `;
 
 const QuesSpan = styled.span`
