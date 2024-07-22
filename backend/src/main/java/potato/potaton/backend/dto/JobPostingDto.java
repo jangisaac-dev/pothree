@@ -2,7 +2,6 @@ package potato.potaton.backend.dto;
 
 import lombok.Builder;
 import lombok.Getter;
-import potato.potaton.backend.domain.JobPostingEntity;
 
 
 public class JobPostingDto {
@@ -17,15 +16,15 @@ public class JobPostingDto {
         private String experience;
         private String phoneNumber;
 
-        public JobPostingEntity toEntity() {
-            return JobPostingEntity.builder()
-                    .email(this.email)
-                    .name(this.name)
-                    .address(this.address)
-                    .experience(this.experience)
-                    .phoneNumber(this.phoneNumber)
-                    .build();
-        }
+//        public JobPostingEntity toEntity() {
+//            return JobPostingEntity.builder()
+//                    .email(this.email)
+//                    .name(this.name)
+//                    .address(this.address)
+//                    .experience(this.experience)
+//                    .phoneNumber(this.phoneNumber)
+//                    .build();
+//        }
     }
 
     @Getter

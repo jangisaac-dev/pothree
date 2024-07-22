@@ -49,7 +49,6 @@ public class JwtTokenProvider {
     }
 
     private SecretKey getSigningKey() {
-        System.out.println("secretKey: " + secretKey);
         byte[] keyBytes = Decoders.BASE64.decode(this.secretKey);
         return Keys.hmacShaKeyFor(keyBytes);
     }
@@ -112,6 +111,9 @@ public class JwtTokenProvider {
     }
 
     public Long extractId(String token) throws Exception {
+        if (!validateToken(token)) {
+            throw new IllegalAccessException();
+        }
         JsonElement id = extraValue(token).get(USER_KEY);
         return id.getAsLong();
     }
@@ -173,15 +175,14 @@ public class JwtTokenProvider {
         }
     }
 
-    public boolean validateAccessToken(String accessToken) {
+    public boolean validateToken(String token) {
         try {
-            Claims claims = extractAllClaims(accessToken);
-
+            Claims claims = extractAllClaims(token);
             return !claims.getExpiration().before(new Date());
         } catch (MalformedJwtException e) {
             throw new MalformedJwtException("Invalid JWT token");
         } catch (ExpiredJwtException e) {
-            throw new ExpiredJwtException(null, null, "AccessToken is Expired");
+            throw new ExpiredJwtException(null, null, "Token is Expired");
         } catch (UnsupportedJwtException ex) {
             throw new UnsupportedJwtException("JWT token is unsupported");
         } catch (IllegalArgumentException e) {
