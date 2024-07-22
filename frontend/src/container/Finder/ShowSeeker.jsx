@@ -4,20 +4,93 @@ import axios from 'axios';
 
 // 선택된 지역의 요양사를 보여주는곳
 
-const ShowSeeker = () => {
+const ShowSeeker = ({lastAddress}) => {
+
+const DommyData = [
+    {
+        address: "[ls로_143]",
+        hourMoney: 3000,
+        gender: "Gay",
+        age: "60세",
+        workHours: "9:00-18:00",
+    },
+    {
+        address: "[ls로_143]",
+        hourMoney: 3000,
+        gender: "Gay",
+        age: "61세",
+        workHours: "9:00-18:00",
+    },
+    {
+        address: "[ls로_143]",
+        hourMoney: 3000,
+        gender: "Gay",
+        age: "62세",
+        workHours: "9:00-18:00",
+    },
+    {
+        address: "[ls로_143]",
+        hourMoney: 3000,
+        gender: "Gay",
+        age: "63세",
+        workHours: "9:00-18:00",
+    },
+    {
+        address: "[ls로_143]",
+        hourMoney: 3000,
+        gender: "Gay",
+        age: "64세",
+        workHours: "9:00-18:00",
+    },
+    {
+        address: "[ls로_143]",
+        hourMoney: 3000,
+        gender: "Gay",
+        age: "65세",
+        workHours: "9:00-18:00",
+    },
+    {
+        address: "[ls로_143]",
+        hourMoney: 3000,
+        gender: "Gay",
+        age: "66세",
+        workHours: "9:00-18:00",
+    },
+    {
+        address: "[ls로_143]",
+        hourMoney: 3000,
+        gender: "Gay",
+        age: "67세",
+        workHours: "9:00-18:00",
+    },
+    {
+        address: "[ls로_143]",
+        hourMoney: 3000,
+        gender: "Gay",
+        age: "68세",
+        workHours: "9:00-18:00",
+    },
+    {
+        address: "[ls로_143]",
+        hourMoney: 3000,
+        gender: "Gay",
+        age: "69세",
+        workHours: "9:00-18:00",
+    },
+    ];
 
     const [Seekers, setSeekers] = useState([]);
     const [currentPage,setCurrentPage] = useState(1);
 
     const MakeTDArray = (arr,size) => {
         const result = [];
-        for(let i =0;i<arr.length;i+=size){
+        for(let i =0;i<arr.length;){
             result.push(arr.slice(i,i+=size));
         }
         return result;
     };
     
-    let SeekerArray = MakeTDArray(Seekers,8);
+    let SeekerArray = MakeTDArray(DommyData,5);
 
     // useEffect(() => {
     //     const fetchData = async() => {
@@ -34,35 +107,40 @@ const ShowSeeker = () => {
     const handlePage = (idx) => {
         setCurrentPage(idx);
     }
-
+    
 
     return (
         <SeekerList>
-            <PersonalSeeker>
-                <InfoContainer>
-                    <Infodiv>
-                        <Topdiv>
-                            <Position>[위치]</Position>
-                            <DDay>D-Day</DDay>
-                        </Topdiv>
-                        <OtherInfodiv>
-                            <OtherInfo>시급</OtherInfo>
-                            <OtherInfo>성별</OtherInfo>
-                            <OtherInfo>연령</OtherInfo>
-                            <OtherInfo>근무가능 시간</OtherInfo>
-                        </OtherInfodiv>
-                    </Infodiv>
-                </InfoContainer>
-                <ProfileImg>프로실 사진</ProfileImg>
-            </PersonalSeeker>
-            {/* {Seekers.map((seeker,index) => {
-                <PersonalSeeker key={index}>
-                    <Position key={index}>[{}]</Position>
-                    <ProfileImg key={index}></ProfileImg>
-                </PersonalSeeker>
-            })} */}
+            {SeekerArray.length > 0 ? (
+                SeekerArray[currentPage].map(data => (
+                    <PersonalSeeker>
+                        <InfoContainer>
+                            <Infodiv>
+                                <Topdiv>
+                                    <Position>{data.address}</Position>
+                                    <DDay>D-Day</DDay>
+                                </Topdiv>
+                                <OtherInfodiv>
+                                    <OtherInfo>시급 : {data.hourMoney}</OtherInfo>
+                                    <OtherInfo>성별 : {data.gender}</OtherInfo>
+                                    <OtherInfo>연령 : {data.age}</OtherInfo>
+                                    <OtherInfo>근무 가능 시간 : {data.workHours}</OtherInfo>
+                                </OtherInfodiv>
+                            </Infodiv>
+                        </InfoContainer>
+                        <ProfileImg>프로실 사진</ProfileImg>
+                    </PersonalSeeker>
+                ))
+            ):<div>아무것도 없어요</div>}
+            
             <BtnDiv>
-                <PageBtn>1</PageBtn>
+            {SeekerArray.length > 0 ? (
+                SeekerArray.map((data, pageidx) => (
+                    <PageBtn onClick={() => {
+                        handlePage(pageidx)
+                    }}>{pageidx+1}</PageBtn>
+                ))
+            ):<div>아무것도 없어요</div>}
             </BtnDiv>
         </SeekerList>
     );
@@ -92,6 +170,7 @@ justify-content: space-between;
 `
 
 const Position = styled.span`
+cursor: pointer;
 color: #000;
 text-align: center;
 font-family: "Open Sans";
@@ -151,6 +230,7 @@ line-height: 116.7%;
 `
 
 const BtnDiv = styled.div`
+margin-top: 10px;
 width: 100%;
 display: flex;
 flex-direction: row;
@@ -158,11 +238,15 @@ justify-content: center;
 `
 
 const PageBtn = styled.button`
+border-left: 1px solid black;
+border-right: 1px solid black;
+border-top: none;
+border-bottom:none;
 background-color: transparent;
-border: none;
 color: #000;
+text-align: center;
 font-family: "Open Sans";
-font-size: 14px;
+font-size: 20px;
 font-style: normal;
 font-weight: 600;
 line-height: 116.7%;

@@ -1,11 +1,15 @@
-import React from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
 import Header from "../../components/Header";
 import main1 from "../../images/main1.jpg"
 import SelectPos from "./SelectPos";
 import SeekerInfoPage from "./SeekerInfo/SeekerInfoPage";
+import ShowSeeker from "./ShowSeeker";
 
 const Finder = () => {
+
+  const [lastAddress,setLastAddress] = useState('');
+
   return (
     // <SeekerInfoPage/>  
     <Wrapper>
@@ -13,7 +17,8 @@ const Finder = () => {
         <Header />
         <Title>요양사 찾기</Title>
         <ImageDiv/>
-        <SelectPos/>
+        <SelectPos setAddress={setLastAddress}/>
+        <ShowSeeker lastAddress={lastAddress}/>
       </ContentWrapper>
     </Wrapper>
   );

@@ -8,7 +8,7 @@ const App = () => {
   return (
     <Router>
       <Routes>
-        <Route path="/f" element={<MainPage />} />
+        <Route path="/" element={<MainPage />} />
         <Route path="/kakaoCallBack" element={<KakaoPage />} />
         <Route path="/find" element={<Finder />} />
       </Routes>
