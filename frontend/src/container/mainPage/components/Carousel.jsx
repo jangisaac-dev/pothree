@@ -52,7 +52,10 @@ const Carousel = () => {
         <Container>
             <ShowContainer>
                 <ImageContainer imageidx={ImageIdx}>
-                {Array.from({length:Total_Image}).map((_,index) => <ImageDiv></ImageDiv>)}
+                {Array.from({length:Total_Image}).map((_,index) => 
+                <ImageDiv
+                key={index}
+                />)}
                 </ImageContainer>
             </ShowContainer>
             <ButtonDiv>
@@ -63,7 +66,7 @@ const Carousel = () => {
                     key={index} 
                     active={index === ImageIdx}
                     onClick={()=>handleDotClick(index)}
-                    ></Dots>)}
+                    />)}
                 </DotsDiv>
                 <NextPrevBtn onClick={handleNextImage}>&gt;</NextPrevBtn>
             </ButtonDiv>
