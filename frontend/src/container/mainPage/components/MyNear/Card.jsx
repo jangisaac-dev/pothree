@@ -9,7 +9,7 @@ const Card = ({ address, hourMoney, gender, age, workHours }) => {
         <div>시급: {hourMoney.toLocaleString()}원</div>
         <div>성별: {gender}</div>
         <div>연령: {age}</div>
-        <div>근무가능 시간: {workHours}</div>
+        <span>근무가능 시간: {workHours}</span>
       </Content>
       <GoBtn>고고링</GoBtn>
     </CardContainer>
@@ -22,8 +22,8 @@ const CardContainer = styled.div`
   align-items: center;
   margin: 50px 0;
   flex-direction: column;
-  width: 400px;
-  height: 550px;
+  width: 300px;
+  height: 400px;
   border: 1px solid #ccc;
   border-radius: 45px;
   padding: 16px;
@@ -41,6 +41,9 @@ const Content = styled.div`
   div {
     margin-bottom: 4px;
     font-size: 30px;
+  }
+  span {
+    font-size: 20px;
   }
 `;
 
