@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "styled-components";
-import icon from "../public/images/icon.png";
-import typo from "../public/images/typo.png";
+import icon from "../images/icon.png";
+import typo from "../images/typo.png";
 
 const Header = () => {
   const menuOption = ["요양사 구직", "요양 구직", "공지사항"];

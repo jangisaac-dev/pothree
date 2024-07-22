@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import { useState } from "react";
-import kakaoLogin from "../../../public/images/kakaoLogin.png";
+import kakaoLogin from "../../../images/kakaoLogin.png";
 
 const LoginBox = () => {
   const [checked, setChecked] = useState(false);
