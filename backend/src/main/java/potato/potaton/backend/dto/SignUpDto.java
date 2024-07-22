@@ -1,14 +1,21 @@
 package potato.potaton.backend.dto;
 
+import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import potato.potaton.backend.domain.UserEntity;
 
 @Getter
 @Builder
-
+@NoArgsConstructor
+@AllArgsConstructor
 public class SignUpDto {
+
     @Builder
+    @Getter
+    @NoArgsConstructor
+    @AllArgsConstructor
     public static class SignUpRequest {
         private String email;
         private String password;
@@ -25,13 +32,13 @@ public class SignUpDto {
         }
     }
 
+    @Getter
+    @NoArgsConstructor
+    @AllArgsConstructor
     public static class SignUpResponseDto {
         private Long id;
-        private String password;
         private String email;
         private String phone;
         private String role;
     }
-
-
 }
