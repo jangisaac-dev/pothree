@@ -78,7 +78,7 @@ const MenuBox = styled.div`
   display: flex;
   align-items: center;
   font-size: 20px;
-  cursor: pointer; // 클릭 가능한 요소
+  cursor: pointer;
 `;
 
 const ServiceBox = styled.div`
