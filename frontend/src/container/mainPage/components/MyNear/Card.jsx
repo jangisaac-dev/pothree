@@ -4,8 +4,8 @@ import styled from "styled-components";
 const Card = ({ address, hourMoney, gender, age, workHours }) => {
   return (
     <CardContainer>
-      <Adress>{address}</Adress>
       <Content>
+        <h1>{address}</h1>
         <div>시급: {hourMoney.toLocaleString()}원</div>
         <div>성별: {gender}</div>
         <div>연령: {age}</div>
@@ -17,33 +17,43 @@ const Card = ({ address, hourMoney, gender, age, workHours }) => {
 };
 
 const CardContainer = styled.div`
-  width: 250px;
-  height: 200px;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  flex-direction: column;
+  width: 472px;
+  height: 706px;
   border: 1px solid #ccc;
-  border-radius: 8px;
+  border-radius: 45px;
   padding: 16px;
   margin-right: 16px;
-  background-color: #f0f0f5;
-`;
-
-const Adress = styled.h3`
-  margin-bottom: 8px;
+  background-color: #fff;
+  :hover {
+    cursor: pointer;
+  }
 `;
 
 const Content = styled.div`
+  h1 {
+    font-size: 40px;
+  }
   div {
     margin-bottom: 4px;
+    font-size: 25px;
   }
 `;
 
 const GoBtn = styled.button`
-  background-color: #007bff;
+  background-color: #a2abff;
+  width: 274px;
+  height: 93px;
   color: white;
   border: none;
   padding: 8px 16px;
-  border-radius: 4px;
+  border-radius: 69px;
   cursor: pointer;
   margin-top: 8px;
+  font-size: 30px;
 `;
 
 export default Card;
