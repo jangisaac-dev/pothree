@@ -1,13 +1,13 @@
 import React from "react";
 import MainPage from "./container/mainPage/MainPage";
 import NearBy from "./container/mainPage/components/MyNear/NearBy";
-import SignUpPage from "./container/signup/SignUpPage";
+import SignUpMain from "./container/signup/SignUpMain";
 
 const App = () => {
   return (
     <div>
-      <SignUpPage/>
-      {/*<MainPage />*/}
+      <SignUpMain/>
+      {/* {<MainPage />} */}
       {/* <NearBy /> */}
     </div>
   );
