@@ -1,18 +1,8 @@
-import styled from "styled-components";
+import React from "react";
+import MainPage from "./container/mainPage/MainPage";
 
-
-function App() {
-  return (
-   <Box>메인 페이지 입니다 </Box>
-  );
-}
+const App = () => {
+  return <MainPage />;
+};
 
 export default App;
-
-
-const Box = styled.div`
-display : flex;
-width : 100px;
-height: 100px;
-background-color: aliceblue;
-`
