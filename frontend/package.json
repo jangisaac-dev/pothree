@@ -8,7 +8,11 @@
     "@testing-library/user-event": "^13.5.0",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
+<<<<<<< HEAD
     "react-hook-form": "^7.52.1",
+=======
+    "react-router-dom": "^6.25.1",
+>>>>>>> eacfa8597fa9bcc301ecafa6077d1624849d215f
     "react-scripts": "5.0.0",
     "styled-components": "^6.1.12",
     "web-vitals": "^2.1.4"
