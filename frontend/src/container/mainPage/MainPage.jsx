@@ -1,8 +1,9 @@
 import React from "react";
 import styled from "styled-components";
 import Header from "../../components/Header";
-import LoginBox from "./components/LoginBox";
+import LoginBox from "./components/Login/LoginBox";
 import Carousel from "./components/Carousel";
+import NearBy from "./components/MyNear/NearBy";
 const MainPage = () => {
   return (
     <Wrapper>
@@ -12,6 +13,7 @@ const MainPage = () => {
           <Carousel />
           <LoginBox />
         </Banner>
+        <NearBy />
       </ContentWrapper>
     </Wrapper>
   );
@@ -33,5 +35,8 @@ const ContentWrapper = styled.div`
   gap: 50px;
 `;
 const Banner = styled.div`
+  width: 100%;
   display: flex;
+  gap: 30px;
+  justify-content: space-around;
 `;
