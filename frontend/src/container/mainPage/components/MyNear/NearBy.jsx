@@ -83,6 +83,7 @@ export default function NearBy() {
 }
 
 const MyNear = styled.div`
+  display: flex;
   width: 100%;
   height: 25%;
 `;

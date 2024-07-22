@@ -15,6 +15,6 @@ const MainPage = () => {
 export default MainPage;
 
 const Wrapper = styled.div`
-  width: 100%;
-  height: 100%;
+  width: 1920px;
+  height: 3135px;
 `;
