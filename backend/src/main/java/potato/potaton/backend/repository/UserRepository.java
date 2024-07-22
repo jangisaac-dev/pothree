@@ -11,9 +11,9 @@ public interface UserRepository extends JpaRepository <UserEntity, Long> {
 
     Optional<UserEntity> findByKakaoKey(String kakaoKey);
 
-    Optional<UserEntity> findByEmail(String email);
 
-    boolean existsByEmail(String email);
+    boolean existsByPhone(String phone);
+    boolean existsByKakaoKey(String kakaoKey);
 }
 
 //이메일로 하도록 함

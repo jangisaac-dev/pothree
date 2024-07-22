@@ -74,7 +74,14 @@ public class JwtTokenProvider {
         }
     }
 
-    public String createToken(Long id, long tokenValid) throws Exception {
+    public JwtTokenDto createToken(Long id) {
+        return new JwtTokenDto(
+                createAccessToken(id),
+                createRefreshToken(id)
+        );
+    }
+
+    private String createToken(Long id, long tokenValid) throws Exception {
         JsonObject jsonObject = new JsonObject();
         jsonObject.addProperty(USER_KEY, id);
 

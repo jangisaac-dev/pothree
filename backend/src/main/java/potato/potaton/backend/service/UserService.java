@@ -9,7 +9,6 @@ import potato.potaton.backend.domain.UserEntity;
 import potato.potaton.backend.dto.SignInRequest;
 import potato.potaton.backend.exception.CustomException;
 import potato.potaton.backend.repository.UserRepository;
-import potato.potaton.backend.dto.SignUpDto;
 import potato.potaton.backend.type.ErrorCode;
 
 @Slf4j
@@ -24,43 +23,31 @@ public class UserService {
     }
 
     @Transactional
-    public UserEntity signUp(SignUpDto.SignUpRequest request) {
-        if (userRepository.existsByEmail(request.toEntity().getEmail())) {
+    public UserEntity signUp(UserEntity user) {
+        if (userRepository.existsByPhone(user.getPhone())) {
+            throw new CustomException(ErrorCode.USER_ALREADY_EXISTS); // 이메일 중복 확인
+        }
+        if (userRepository.existsByKakaoKey(user.getKakaoKey())) {
             throw new CustomException(ErrorCode.USER_ALREADY_EXISTS); // 이메일 중복 확인
         }
 
-        UserEntity userEntity = UserEntity.builder()
-                .phone(request.toEntity().getPhone())
-                .email(request.toEntity().getEmail())
-                .password(request.toEntity().getPassword())
-                .role("USER_PENDING")
-                .build();
-
-        return userRepository.save(userEntity);
+        return userRepository.save(user);
     }
 
-    @Transactional
-    public UserEntity authenticate(SignInRequest request) {
-        UserEntity userEntity = userRepository.findByEmail(request.getEmail())
+//    @Transactional
+//    public UserEntity authenticate(SignInRequest request) {
+//        UserEntity userEntity = userRepository.findByEmail(request.getEmail())
+//                .orElseThrow(() -> new CustomException(ErrorCode.USER_NOT_FOUND));
+//
+//        if ("USER_PENDING".equals(userEntity.getRole())) {
+//            throw new CustomException(ErrorCode.USER_NOT_APPROVED); // 승인되지 않은 유저
+//        }
+//
+//        return userEntity;
+//    }
+
+    public UserEntity findUserById(Long userId) {
+        return userRepository.findById(userId)
                 .orElseThrow(() -> new CustomException(ErrorCode.USER_NOT_FOUND));
-
-        if (!request.getPassword().equals(userEntity.getPassword())) {
-            throw new CustomException(ErrorCode.PASSWORD_NOT_MATCH);
-        }
-        if ("USER_PENDING".equals(userEntity.getRole())) {
-            throw new CustomException(ErrorCode.USER_NOT_APPROVED); // 승인되지 않은 유저
-        }
-
-        return userEntity;
-    }
-    @Transactional
-    public void approveUser(Long userId) {
-        UserEntity userEntity = userRepository.findById(userId)
-                .orElseThrow(() -> new CustomException(ErrorCode.USER_NOT_FOUND));
-
-        if ("USER_PENDING".equals(userEntity.getRole())) {
-            userEntity.changeRole("USER"); // 승인된 유저로 변경
-            userRepository.save(userEntity);
-        }
     }
 }

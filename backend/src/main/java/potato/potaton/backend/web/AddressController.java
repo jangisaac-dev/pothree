@@ -3,12 +3,9 @@ package potato.potaton.backend.web;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import potato.potaton.backend.domain.AddressEntity;
 import potato.potaton.backend.service.AddressService;
-import potato.potaton.backend.service.JobSeekerService;
-import potato.potaton.backend.util.AddrAPI;
 
 import java.util.List;
 
@@ -19,8 +16,6 @@ public class AddressController {
     @Autowired
     AddressService addressService;
 
-    @Autowired
-    JobSeekerService jobSeekerService;
 
     @GetMapping("/sido")
     public ResponseEntity<List<AddressEntity>> findSido() {

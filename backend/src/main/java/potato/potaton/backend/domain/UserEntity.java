@@ -10,7 +10,6 @@ import org.antlr.v4.runtime.misc.NotNull;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-
 public class UserEntity extends BaseEntity{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -23,27 +22,16 @@ public class UserEntity extends BaseEntity{
     @Column(unique = true)
     private String kakaoKey;
 
-    @NotNull
-    private String email;
+    private String birth;
 
-    @NotNull
-    private String password;
+    private String sex;
+
+    private String yoyangRole;
+
+    private String yoyangImage;
+
+    private String profileImage; // 나중에
 
     @NotNull
     private String role;
-
-    public UserEntity(String phone, String email, String password, String role) {
-        this.phone = phone;
-        this.email = email;
-        this.password = password;
-        this.role = role;
-    }
-
-    public void changeRole(String newRole) {
-        if ("USER_PENDING".equals(this.role) || "USER".equals(this.role)) {
-            this.role = newRole;
-        } else {
-            throw new IllegalStateException("Cannot change role from " + this.role);
-        }
-    }
 }
