@@ -1,47 +1,19 @@
 import React from "react";
 import styled from "styled-components";
-import { useState } from "react";
-import kakaoLogin from "../../../../images/kakaoLogin.png";
-import AdminLogin from "./components/AdminLogin";
-import { REST_API_KEY, REDIRECT_URI } from "../../../../config/RESTAPI";
 
 const LoginBox = () => {
-  const [checked, setChecked] = useState(false);
-
-  const handleToggle = () => {
-    setChecked(!checked);
-  };
-  const link = `https://kauth.kakao.com/oauth/authorize?client_id=${REST_API_KEY}&redirect_uri=${REDIRECT_URI}&response_type=code`;
-
-  const loginHandler = () => {
-    window.location.href = link;
-  };
+  
   return (
     <Wrapper>
       <ToggleDiv>
-        <label htmlFor="toggle" className="toggleSwitch">
-          <ToggleInput
-            type="checkbox"
-            id="toggle"
-            checked={checked}
-            onChange={handleToggle}
-          />
-          <ToggleContainer checked={checked}>
-            <ToggleButton checked={checked}>
-              {checked ? "관리자" : "일반"}
-            </ToggleButton>
-            <div>일반</div>
-            <div>관리자</div>
-          </ToggleContainer>
-        </label>
+        <DivContainer></DivContainer>
+        <LogInDiv>
+          <NameSpan>권해수</NameSpan>
+          <JustSpan>님 반가워요!</JustSpan>
+        </LogInDiv>
+        <MyPageBtn>마이페이지 ------></MyPageBtn>
+        <Logout>로그아웃</Logout>
       </ToggleDiv>
-      {checked ? (
-        <AdminLogin />
-      ) : (
-        <ImageDiv onClick={loginHandler}>
-          <img src={kakaoLogin} alt="" width={300} height={80} />
-        </ImageDiv>
-      )}
     </Wrapper>
   );
 };
@@ -65,53 +37,72 @@ const Wrapper = styled.div`
 const ToggleDiv = styled.div`
   color: black;
   display: flex;
+  flex-direction: column;
   align-items: center;
   gap: 20px;
   position: absolute;
   top: 20px;
 `;
 
-const ToggleContainer = styled.div`
-  width: 140px;
-  height: 50px;
-  display: flex;
-  align-items: center;
-  justify-content: space-around;
-  position: relative;
-  border-radius: 30px;
-  background: white;
-  box-shadow: 0 0 16px 3px rgba(0 0 0 / 15%);
-  cursor: pointer;
-  padding: 0 10px;
-  &:hover {
-    box-shadow: 0 0 16px 3px rgba(0, 0, 0, 0.3);
-  }
-  color: black;
-  font-weight: bold;
-  padding: 0px 15px 0px 15px;
-`;
+const LogInDiv = styled.div`
+width: 100%
+`
 
-const ToggleButton = styled.span`
-  width: 80px;
-  height: 40px;
-  position: absolute;
-  top: 50%;
-  left: ${(props) => (props.checked ? "85px" : "5px")};
-  transform: translateY(-50%);
-  border-radius: 20px;
-  background: #1da133;
-  transition: left 0.2s ease-in, background 0.2s ease-in;
-  color: white;
-  font-weight: bold;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-`;
+const NameSpan = styled.span`
+color: #000;
+text-align: center;
+font-family: "Open Sans";
+font-size: 40px;
+font-style: normal;
+font-weight: 600;
+line-height: 116.7%;
+text-decoration-line: underline;
+`
+const JustSpan = styled.span`
+color: #000;
+font-family: "Open Sans";
+font-size: 24px;
+font-style: normal;
+font-weight: 600;
+line-height: 116.7%;
+`
 
-const ToggleInput = styled.input`
-  display: none;
-`;
-const ImageDiv = styled.div`
-  margin-top: 40px;
-  cursor: pointer;
-`;
+const MyPageBtn = styled.div`
+width: 80%;
+height: 50px;
+display: flex;
+flex-direction: row;
+justify-content: center;
+align-items: center;
+background-color: #B1D470;
+border-radius: 20px;
+color: #000;
+text-align: center;
+font-family: "Open Sans";
+font-size: 18px;
+font-style: normal;
+font-weight: 600;
+line-height: 116.7%;
+cursor: pointer;
+`
+
+const Logout = styled.span`
+color: #000;
+
+text-align: center;
+font-family: "Open Sans";
+font-size: 24px;
+font-style: normal;
+font-weight: 600;
+line-height: 116.7%; /* 28.008px */
+text-decoration-line: underline;
+cursor: pointer;
+`
+
+const DivContainer = styled.div`
+height: 100%;
+width: 100%;
+display: flex;
+flex-direction: column;
+
+`

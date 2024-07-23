@@ -17,13 +17,9 @@ const App = () => {
         <Route path="/find" element={<Finder />} />
         <Route path="/signup" element={<SignUpMain />} />
         <Route path="/upload" element={<SubmitUseForm />} />
-<<<<<<< HEAD
         <Route path="findOldMan" element={<FindOldMan />} />
         <Route path="/seekerInfo" element={<SeekerInfoPage/>}/>
         <Route path="/myPage" element={<MyPage/>}/>
-=======
-        <Route path="/findOldMan" element={<FindOldMan />} />
->>>>>>> 275e4fb6fb0daa101421bae20bdbeb288683a647
       </Routes>
     </Router>
   );

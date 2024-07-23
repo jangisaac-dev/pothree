@@ -14,8 +14,8 @@ const Footer = () => {
     <FooterContainer>
       <FooterContent>
         <FooterImg>
-          <img src={icon} alt="로고" />
-          <img src={typo} alt="타이포" />
+          <img src={icon} alt="로고" width={100} height={100} />
+          <img src={typo} alt="타이포"  width={110} height={35} />
         </FooterImg>
 
         <FooterLinkContainer>

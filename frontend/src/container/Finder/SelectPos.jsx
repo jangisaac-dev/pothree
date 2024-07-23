@@ -3,8 +3,6 @@ import styled from "styled-components";
 import axios from "axios";
 import { URL } from "../../URL";
 
-// 지역 선택하는곳
-
 const SelectPos = ({setAddress}) => {
   const [cities, setCities] = useState([]);
   const [districts, setDistricts] = useState([]);
@@ -74,6 +72,7 @@ const SelectPos = ({setAddress}) => {
     const subdistrictCode = e.target.value;
     setSelectedSubdistrict(subdistrictCode);
   };
+
 
   return (
     <Wrapper>
