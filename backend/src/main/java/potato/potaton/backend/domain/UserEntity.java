@@ -5,6 +5,7 @@ import lombok.*;
 import org.antlr.v4.runtime.misc.NotNull;
 
 @Getter
+@Setter
 @Entity
 @Table(name = "User")
 @NoArgsConstructor
@@ -28,8 +29,10 @@ public class UserEntity extends BaseEntity{
 
     private String yoyangRole;
 
+    @Column(columnDefinition = "longtext")
     private String yoyangImage;
 
+    @Column(columnDefinition = "longtext")
     private String profileImage; // 나중에
 
     @NotNull

@@ -8,6 +8,7 @@ import org.webjars.NotFoundException;
 import potato.potaton.backend.domain.UserEntity;
 import potato.potaton.backend.dto.NormalSignUpDto;
 import potato.potaton.backend.dto.SeekerSignUpDto;
+import potato.potaton.backend.dto.UserUpdateDto;
 import potato.potaton.backend.service.UserService;
 import potato.potaton.backend.util.JwtTokenProvider;
 
@@ -82,5 +83,14 @@ public class AuthController {
             log.error("회원가입 중 오류 발생: {}", e.getMessage(), e);
             return ResponseEntity.status(500).body("오류: " + e.getMessage());
         }
+    }
+
+
+    @GetMapping("/myPage")
+    public ResponseEntity<UserEntity> mypage(@RequestParam("model") UserUpdateDto dto) {
+        if (!tokenProvider.validateToken(dto.getToken())) {
+            throw new NotFoundException("Not found Token");
+        }
+        return ResponseEntity.ok(userService.update(dto));
     }
 }

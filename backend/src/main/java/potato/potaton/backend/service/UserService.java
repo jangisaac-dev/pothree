@@ -6,16 +6,18 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import org.webjars.NotFoundException;
 import potato.potaton.backend.domain.UserEntity;
-import potato.potaton.backend.dto.SignInRequest;
+import potato.potaton.backend.dto.UserUpdateDto;
 import potato.potaton.backend.exception.CustomException;
 import potato.potaton.backend.repository.UserRepository;
 import potato.potaton.backend.type.ErrorCode;
+import potato.potaton.backend.util.JwtTokenProvider;
 
 @Slf4j
 @Service
 @RequiredArgsConstructor
 public class UserService {
     private final UserRepository userRepository;
+    private final JwtTokenProvider jwtTokenProvider;
 
     public UserEntity loadUserByKakaoKey(String kakaoKey) {
         return userRepository.findByKakaoKey(kakaoKey)
@@ -34,17 +36,24 @@ public class UserService {
         return userRepository.save(user);
     }
 
-//    @Transactional
-//    public UserEntity authenticate(SignInRequest request) {
-//        UserEntity userEntity = userRepository.findByEmail(request.getEmail())
-//                .orElseThrow(() -> new CustomException(ErrorCode.USER_NOT_FOUND));
-//
-//        if ("USER_PENDING".equals(userEntity.getRole())) {
-//            throw new CustomException(ErrorCode.USER_NOT_APPROVED); // 승인되지 않은 유저
-//        }
-//
-//        return userEntity;
-//    }
+    @Transactional
+    public UserEntity update(UserUpdateDto dto) {
+        try {
+            Long id = jwtTokenProvider.extractId(dto.getToken());
+
+            UserEntity user = userRepository.findById(id).orElseThrow();
+
+            user.setBirth(dto.getBirth());
+            user.setSex(dto.getSex());
+            user.setProfileImage(dto.getProfileImage());
+            user.setYoyangImage(dto.getYoyangImage());
+            user.setYoyangRole(dto.getYoyangRole());
+            return userRepository.save(user);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        throw new RuntimeException("error update");
+    }
 
     public UserEntity findUserById(Long userId) {
         return userRepository.findById(userId)
