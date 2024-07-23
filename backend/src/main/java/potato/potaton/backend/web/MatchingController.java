@@ -102,4 +102,17 @@ public class MatchingController {
         return ResponseEntity.ok(resultUsers);
     }
 
+    @PostMapping("/jobSeekerNoParam")
+    public ResponseEntity<List<UserEntity>> jobSeekerNoParam() throws Exception {
+        List<UserEntity> list = userService.findUserByAddress("1111010100");
+        List<UserEntity> smallList = new ArrayList<>();
+        for (int i = 0; i < 10; i++) {
+            UserEntity userEntity = list.get(i);
+            userEntity.setAddress("서울특별시 종로구 청운동");
+            smallList.add(userEntity);
+        }
+
+        return ResponseEntity.ok(smallList);
+    }
+
 }

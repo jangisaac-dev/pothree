@@ -20,6 +20,9 @@ public class UserEntity extends BaseEntity{
     @Column(unique = true)
     private String phone;
 
+    @NotNull
+    private String name;
+
     @Column(unique = true)
     private String kakaoKey;
 
@@ -42,4 +45,8 @@ public class UserEntity extends BaseEntity{
 
     @NotNull
     private String address;
+
+    private String priceByTime;
+
+    private String workableTime;
 }
