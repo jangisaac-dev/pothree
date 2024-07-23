@@ -38,6 +38,8 @@ public class UserEntity extends BaseEntity{
     @NotNull
     private String role;
 
-    @NotNull
     private String needHelp;
+
+    @NotNull
+    private String address;
 }

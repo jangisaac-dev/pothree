@@ -13,6 +13,8 @@ import potato.potaton.backend.repository.UserRepository;
 import potato.potaton.backend.type.ErrorCode;
 import potato.potaton.backend.util.JwtTokenProvider;
 
+import java.util.List;
+
 @Slf4j
 @Service
 @RequiredArgsConstructor
@@ -63,4 +65,12 @@ public class UserService {
         return userRepository.findById(userId)
                 .orElseThrow(() -> new CustomException(ErrorCode.USER_NOT_FOUND));
     }
+
+    public List<UserEntity> findUserByAddress(String address) {
+        return userRepository.findAllByAddress(address);
+    }
+
+//    public UserEntity address(String address) {
+//
+//    }
 }
