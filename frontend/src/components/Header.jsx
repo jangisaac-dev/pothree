@@ -2,18 +2,50 @@ import React from "react";
 import styled from "styled-components";
 import icon from "../images/icon.png";
 import typo from "../images/typo.png";
+import { useNavigate } from "react-router-dom";
 
 const Header = () => {
-  const menuOption = ["요양사 구직", "요양 구직", "공지사항"];
+  const navigate = useNavigate();
+
+  const handleToOld = (path) => {
+    navigate(path);
+  };
+
+  const handleToMain = () => {
+    navigate("/");
+  };
+
+  const menuOption = [
+    {
+      name: "요양사 구직",
+      path: "/find",
+    },
+    {
+      name: "요양 구직",
+      path: "/findOldMan",
+    },
+  ];
+
   return (
     <Wrapper>
       <LogoBox>
-        <img src={icon} alt="" width={90} height={90} />
-        <img src={typo} alt="" width={119} height={36} />
+        <img
+          src={icon}
+          alt="Icon"
+          width={90}
+          height={90}
+          onClick={handleToMain}
+        />
+        <img src={typo} alt="Typo" width={119} height={36} />
       </LogoBox>
       <HeaderMenu>
         {menuOption.map((option, index) => (
-          <MenuBox key={index}>{option}</MenuBox>
+          <MenuBox
+            key={index}
+            onClick={() => handleToOld(option.path)}
+          >
+            {option.name}
+          </MenuBox>
         ))}
       </HeaderMenu>
       <ServiceBox>고객센터</ServiceBox>
@@ -29,21 +61,26 @@ const Wrapper = styled.div`
   justify-content: space-around;
   align-items: center;
 `;
+
 const LogoBox = styled.div`
   display: flex;
   align-items: center;
 `;
+
 const HeaderMenu = styled.div`
   display: flex;
   align-items: center;
   gap: 35px;
   margin-left: 130px;
 `;
+
 const MenuBox = styled.div`
   display: flex;
   align-items: center;
   font-size: 20px;
+  cursor: pointer;
 `;
+
 const ServiceBox = styled.div`
   width: 200px;
   height: 70px;

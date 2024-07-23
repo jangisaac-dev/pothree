@@ -1,28 +1,17 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import axios from "axios";
-import { URL } from "../URL";
+import { URL } from "../../URL";
 
-const LocationSelectet = () => {
+// 지역 선택하는곳
+
+const SelectPos = ({setAddress}) => {
   const [cities, setCities] = useState([]);
   const [districts, setDistricts] = useState([]);
   const [subdistricts, setSubdistricts] = useState([]);
   const [selectedCity, setSelectedCity] = useState("");
   const [selectedDistrict, setSelectedDistrict] = useState("");
   const [selectedSubdistrict, setSelectedSubdistrict] = useState("");
-
-  const handleSubmit = async () => {
-    try {
-      const response = await axios.post("", {
-        sido: selectedCity,
-        sigungu: selectedDistrict,
-        dongubmeon: selectedSubdistrict,
-      });
-      console.log("검색 결과:", response.data);
-    } catch (error) {
-      console.log("검색 실패:", error);
-    }
-  };
 
   useEffect(() => {
     axios
@@ -120,12 +109,15 @@ const LocationSelectet = () => {
           ))}
         </Selecter>
       </SelectBox>
-      <SubmitButton onClick={handleSubmit}>내 지역 어르신 검색</SubmitButton>
+      <SubmitButton onClick={() => 
+        (alert('요양사 검색'))}>
+        내 지역 요양사 검색
+      </SubmitButton>
     </Wrapper>
   );
 };
 
-export default LocationSelectet;
+export default SelectPos;
 
 const Wrapper = styled.div`
   width: 100%;
