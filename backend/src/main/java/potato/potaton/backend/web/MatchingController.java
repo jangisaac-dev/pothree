@@ -1,5 +1,6 @@
 package potato.potaton.backend.web;
 
+import com.google.gson.Gson;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ResponseEntity;
@@ -14,6 +15,7 @@ import potato.potaton.backend.service.MatchingService;
 import potato.potaton.backend.service.UserService;
 import potato.potaton.backend.util.JwtTokenProvider;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Slf4j
@@ -23,13 +25,19 @@ import java.util.List;
 public class MatchingController {
     private final MatchingService matchingService;
     private final JwtTokenProvider tokenProvider;
+    private final UserService userService;
 
     @PostMapping("/list")
-    public ResponseEntity<List<MatchingEntity>> getMyRequester(@RequestParam String token) {
+    public ResponseEntity<List<UserEntity>> getMyRequester(@RequestParam String token) {
         try {
             Long id = tokenProvider.extractId(token);
 
-            return ResponseEntity.ok(matchingService.findForSelf(id));
+            List<MatchingEntity> list = matchingService.findForSelf(id);
+            List<UserEntity> requesters = new ArrayList<>();
+            for (MatchingEntity matching : list) {
+                requesters.add(userService.findUserById(matching.getRequestId()));
+            }
+            return ResponseEntity.ok(requesters);
         } catch (Exception e) {
             e.printStackTrace();
             throw new NotFoundException("없는 사용자입니다.");
@@ -37,15 +45,14 @@ public class MatchingController {
     }
 
     @PostMapping("/save")
-    public ResponseEntity<MatchingEntity> signUpSeeker(@RequestParam MatchingRequestDto model) {
-        try {
-            return ResponseEntity.ok(matchingService.save(
-                    new MatchingEntity(null, model.getRequestId(), model.getEndPointId())
-            ));
-        } catch (Exception e) {
-            //인증 오류 시 에러 메시지 반환
-            e.printStackTrace();
-            throw e;
+    public ResponseEntity<MatchingEntity> signUpSeeker(@RequestBody MatchingRequestDto model) throws Exception {
+        System.out.println(new Gson().toJson(model));
+        if (!tokenProvider.validateToken(model.getToken())) {
+            throw new NotFoundException("Invalid token.");
         }
+        Long userId = tokenProvider.extractId(model.getToken());
+        return ResponseEntity.ok(matchingService.save(
+                new MatchingEntity(null, userId, Long.parseLong(model.getEndPointId()) )
+        ));
     }
 }

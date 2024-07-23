@@ -66,7 +66,7 @@ public class AuthController {
         try {
             UserEntity user = userService.signUp(
                     UserEntity.builder()
-                            .role("T")
+                            .role("F")
                             .phone(normalUser.getPhone())
                             .sex(normalUser.getSex())
                             .birth(normalUser.getBirth())

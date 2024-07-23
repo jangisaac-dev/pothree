@@ -11,6 +11,6 @@ import lombok.Setter;
 @AllArgsConstructor
 @NoArgsConstructor
 public class MatchingRequestDto {
-    private Long requestId;
-    private Long endPointId;
+    private String token;
+    private String endPointId;
 }
