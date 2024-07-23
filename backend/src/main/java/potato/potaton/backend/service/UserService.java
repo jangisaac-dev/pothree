@@ -3,6 +3,7 @@ package potato.potaton.backend.service;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.webjars.NotFoundException;
 import potato.potaton.backend.domain.UserEntity;
@@ -16,7 +17,9 @@ import potato.potaton.backend.util.JwtTokenProvider;
 @Service
 @RequiredArgsConstructor
 public class UserService {
+    @Autowired
     private final UserRepository userRepository;
+    @Autowired
     private final JwtTokenProvider jwtTokenProvider;
 
     public UserEntity loadUserByKakaoKey(String kakaoKey) {
