@@ -4,10 +4,7 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import potato.potaton.backend.domain.JobPostingEntity;
-import potato.potaton.backend.dto.JobPostingDto;
 import potato.potaton.backend.exception.CustomException;
-import potato.potaton.backend.repository.JobPostingRepository;
 import potato.potaton.backend.type.ErrorCode;
 
 import java.util.List;

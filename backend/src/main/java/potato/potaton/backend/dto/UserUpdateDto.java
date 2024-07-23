@@ -15,4 +15,5 @@ public class UserUpdateDto {
     private String yoyangRole;
     private String yoyangImage;
     private String profileImage;
+    private String needHelp;
 }

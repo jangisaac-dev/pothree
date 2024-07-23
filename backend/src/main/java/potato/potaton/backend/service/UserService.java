@@ -51,6 +51,7 @@ public class UserService {
             user.setProfileImage(dto.getProfileImage());
             user.setYoyangImage(dto.getYoyangImage());
             user.setYoyangRole(dto.getYoyangRole());
+            user.setNeedHelp(dto.getNeedHelp());
             return userRepository.save(user);
         } catch (Exception e) {
             e.printStackTrace();
