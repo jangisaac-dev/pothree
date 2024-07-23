@@ -15,7 +15,7 @@ const App = () => {
         <Route path="/find" element={<Finder />} />
         <Route path="/signup" element={<SignUpMain />} />
         <Route path="/upload" element={<SubmitUseForm />} />
-        <Route path="findOldMan" element={<FindOldMan />} />
+        <Route path="/findOldMan" element={<FindOldMan />} />
       </Routes>
     </Router>
   );
