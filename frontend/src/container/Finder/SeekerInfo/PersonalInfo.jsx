@@ -41,7 +41,7 @@ const PersonalInfo = ({ seeker }) => {
 
             <CarrerDiv>
                 <Position>자기소개</Position>
-                <SelfIntro></SelfIntro>
+                <SelfIntro>안녕하세요 저는</SelfIntro>
             </CarrerDiv>
 
             <SelectBtn>
@@ -149,7 +149,7 @@ const SelfIntro = styled.div`
     border-radius: 20px;
     width: 100%;
     height: 300px;
-    padding: 10px;
+    padding: 15px;
     border: 1px solid black;
 `
 

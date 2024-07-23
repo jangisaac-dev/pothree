@@ -4,6 +4,7 @@ import icon from "../images/icon.png";
 import typo from "../images/typo.png";
 import { useNavigate } from "react-router-dom";
 
+
 const Header = () => {
   const navigate = useNavigate();
 
