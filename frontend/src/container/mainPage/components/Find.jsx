@@ -9,7 +9,7 @@ const Find = () => {
         <FindText>요양 보호사 찾기</FindText>
         <ExplainText>나에게 딱 맞는 요양사를 찾아보세요</ExplainText>
       </TextDiv>
-      <SignUpDiv>로그인 후 이용 가능</SignUpDiv>
+      <SignUpDiv>                  </SignUpDiv>
     </ContentWrapper>
   );
 };
@@ -47,7 +47,6 @@ const SignUpDiv = styled.div`
   align-items: center;
   justify-content: center;
   border-radius: 48px;
-  background: #0b6f03;
   color: white;
   font-size: 32px;
   font-weight: 600;
